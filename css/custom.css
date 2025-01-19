@@ -293,8 +293,8 @@ h6::before {
     z-index: -2;
   }
   
-  /* 雪花黑夜模式不显示 */
-  [data-theme="dark"] #snow{
-    display: none;
-  }
+/* 雪花黑夜模式不显示 */
+[data-theme="dark"] #snow{
+  display: none;
+}
   

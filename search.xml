@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>BUAA_OS_Lab0_实验报告</title>
+      <link href="/2025/04/27/OS-Lab1/OS-Lab1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
+      <url>/2025/04/27/OS-Lab1/OS-Lab1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OS-Lab1实验报告"><a href="#OS-Lab1实验报告" class="headerlink" title="OS-Lab1实验报告"></a>OS-Lab1实验报告</h1><h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="Thinking-1-1"><a href="#Thinking-1-1" class="headerlink" title="Thinking 1.1"></a>Thinking 1.1</h3><blockquote><p>在阅读 附录中的编译链接详解 以及本章内容后，尝试分别使用实验环境中<br>的原生 x86 工具链（gcc、ld、readelf、objdump 等）和 MIPS 交叉编译工具链（带有<br>mips-linux-gnu- 前缀，如 mips-linux-gnu-gcc、mips-linux-gnu-ld），重复其中的编<br>译和解析过程，观察相应的结果，并解释其中向 objdump 传入的参数的含义。</p></blockquote><p>指导书中提到的objdump指令为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -DS 要反汇编的目标文件名 &gt; 导出文本文件名</span><br></pre></td></tr></table></figure><p>其中：</p><ul><li><code>-D</code>表示：反汇编（Disassemble）那些预计包含指令的<strong>所有</strong>节区。</li><li><code>-S</code>表示：在反汇编输出中，尽可能地将源代码（如果编译时包含了调试信息，通常是使用 gcc -g 编译）与汇编代码交错显示。这对于理解某段汇编代码对应哪行 C&#x2F;C++ 源代码非常有帮助。通常需要与<code>-d</code>或<code>-D</code>一起使用。</li><li><code>-d</code>表示：反汇编那些预计包含指令的<strong>代码</strong>节区。</li></ul><p>首先，编写一个简单的程序<code>helloworld.c</code>，如下</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>执行<code>mips-linux-gnu-gcc -E helloworld.c &gt; temp</code>命令，只进行预处理，不进行编译和操作，找到文件末尾的位置，如图所示</p><p><img src="/img/OS-Lab1/preprocessing.png" alt="预处理"></p><p>预处理只不过是将头文件展开，替换成相应的代码，并没有任何编译和链接</p><p>依次执行下面两个命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mips-linux-gnu-gcc -c helloworld.c</span><br><span class="line">mips-linux-gnu-objdump -DS helloworld.o &gt; temp</span><br></pre></td></tr></table></figure><p>这两个命令分别是针对MIPS架构的交叉编译和反汇编操作</p><p>第一个命令是使用交叉编译器<code>mips-linux-gun-gcc</code>对<code>helloworld.c</code>文件进行编译，最终会生成目标文件<code>helloworld.o</code><br>第二个命令是使用<code>mips-linux-gnu-objdump</code>工具对目标文件<code>helloworld.o</code>进行反汇编，并将结果输出到<code>temp</code>中</p><p>最终结果如图</p><p><img src="/img/disassemble.png" alt="反汇编"></p><p>我们发现反汇编的结果中包含了源代码中定义的变量和函数</p><p>再执行下面两个命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mips-linux-gnu-gcc -o helloworld helloworld.c</span><br><span class="line">mips-linux-gnu-objdump -DS helloworld &gt; temp</span><br></pre></td></tr></table></figure><p>这两个命令是用于编译和反汇编 MIPS 架构程序的操作</p><p>第一个命令是使用交叉编译器<code>mips-linux-gun-gcc</code>对<code>helloworld.c</code>文件进行编译，生成可执行文件<code>helloworld</code><br>第二个命令是使用<code>mips-linux-gnu-objdump</code>工具对名为<code>helloworld</code>的可执行文件进行反汇编，并将反汇编结果输出到<code>temp</code>中</p><p><img src="/img/disassemble2.png" alt="反汇编2"></p><p>我们发现<code>main</code>函数被分配到了<code>00400650</code>的地址上</p><p>查阅相关资料后，我们知道：<br>如果只编译不链接</p><ol><li>生成目标文件（.o 文件），包含了编译后的机器代码和符号表信息，但还没有进行符号解析和地址重定位</li><li>如果涉及多个源文件，每个源文件都会生成对应的目标文件，但它们并未合并在一起</li></ol><p>编译并连接</p><ol><li>将各个目标文件连接在一起，解析符号引用，填充地址空间，并生成最终的可执行文件</li><li>在链接过程中，可能还会包含库文件、共享对象等，以及进行符号解析和地址重定位</li></ol><h3 id="Thinking-1-2"><a href="#Thinking-1-2" class="headerlink" title="Thinking 1.2"></a>Thinking 1.2</h3><blockquote><p>思考下述问题：</p><ul><li>尝试使用我们编写的 readelf 程序，解析之前在 target 目录下生成的内核 ELF 文<br>件。<blockquote><ul><li>也许你会发现我们编写的 readelf 程序是不能解析 readelf 文件本身的，而我们刚<br>才介绍的系统工具 readelf 则可以解析，这是为什么呢？（提示：尝试使用 readelf<br>-h，并阅读 tools&#x2F;readelf 目录下的 Makefile，观察 readelf 与 hello 的不同）</li></ul></blockquote></li></ul></blockquote><p>运行<code>./tools/readelf/readelf ./target/mos</code>指令，得到</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">0:0x0</span><br><span class="line">1:0x80010000</span><br><span class="line">2:0x80011cc0</span><br><span class="line">3:0x80011cd8</span><br><span class="line">4:0x80011cf0</span><br><span class="line">5:0x0</span><br><span class="line">6:0x0</span><br><span class="line">7:0x0</span><br><span class="line">8:0x0</span><br><span class="line">9:0x0</span><br><span class="line">10:0x0</span><br><span class="line">11:0x0</span><br><span class="line">12:0x0</span><br><span class="line">13:0x0</span><br><span class="line">14:0x0</span><br><span class="line">15:0x0</span><br><span class="line">16:0x0</span><br></pre></td></tr></table></figure><p>我们得到了一系列的地址信息。但当我们用readelf程序去解析自身，却发现无法成功。这是因为我们编写的 readelf 程序仅支持解析<strong>32</strong>位 ELF 文件，而程序自身实际上是一个<strong>64</strong>位的 ELF 文件。</p><p>我们用<code>readelf -h</code>命令分别对<code>hello</code>和<code>readelf</code>文件进行头部信息解析。<code>hello</code>文件结果显示为<code>ELF32</code>，而<code>readelf</code>文件则显示为<code>ELF64</code></p><h2 id="实验难点"><a href="#实验难点" class="headerlink" title="实验难点"></a>实验难点</h2><p>本次实验主要分为内核初始化阶段的底层配置和用户功能模块开发两个部分。在系统启动环节中，我们重点进行了内核地址空间的重新规划与启动流程的汇编级实现。这需要结合工程中的多维度技术文档，特别是通过解析内存映射示意图来修正链接脚本(kernel.lds)中的段地址参数，同时需要深入理解平台相关的宏定义体系，才能准确完成start.S中关键寄存器的初始化配置。虽然这部分基础代码量不大，但涉及到底层硬件与编译工具链的深度协同，需要建立完整的地址空间映射认知</p><p>在功能开发层面，实验包含两个特色模块的实现。首先是类readelf工具的核心功能仿真，虽然需要补全的代码片段有限，但整个工程架构涉及ELF文件格式解析的完整处理流程。为此必须仔细研读工程中预定义的节头表、程序头表等数据结构，并理解各字段在二进制解析过程中的动态填充机制。其次是内核级日志输出系统printk的完善，该任务虽然只需在现有框架内补充少量格式化处理逻辑，但要真正掌握其设计精髓，需要通盘分析可变参数处理机制、字符缓冲管理策略以及终端驱动接口的调用层级。特别值得注意的是，三个关联文件之间的数据流向和函数调用关系构成了完整的输出处理链条，这对理解操作系统内核的模块化设计思想具有重要价值</p><h2 id="实验体会"><a href="#实验体会" class="headerlink" title="实验体会"></a>实验体会</h2><p>这次实验，我们整体的工作量并不是很大，难度也不高。但是比较重要的一点是我们要仔细阅读给出的代码，把握细节。把架构理清楚，代码的编写和补全就很轻松了。在补全代码的同时，我也学到了很多更有趣的c代码编写方式，也算是给我带来了更高端的代码编写细则</p><h2 id="原创说明"><a href="#原创说明" class="headerlink" title="原创说明"></a>原创说明</h2><p>本次实验报告参考了<a href="https://buaaczx.github.io/posts/20240712-os-lab1/">czx学长</a>和<a href="https://yanna-zy.github.io/2023/03/19/BUAA-OS-1/">zy学姐</a>的博客</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我会构建健壮的多线程电梯评测机</title>
       <link href="/2025/04/08/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/"/>
       <url>/2025/04/08/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/</url>
@@ -70,6 +83,17 @@
     
     
     <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
@@ -82,32 +106,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
-      
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '見て見て!!!';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = 'Timotei————';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/cursor.js"/>
       <url>/js/cursor.js</url>
       
         <content type="html"><![CDATA[var CURSOR;Math.lerp = (a, b, n) => (1 - n) * a + n * b;const getStyle = (el, attr) => {    try {        return window.getComputedStyle            ? window.getComputedStyle(el)[attr]            : el.currentStyle[attr];    } catch (e) {}    return "";};class Cursor {    constructor() {        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    move(left, top) {        this.cursor.style["left"] = `${left}px`;        this.cursor.style["top"] = `${top}px`;    }    create() {        if (!this.cursor) {            this.cursor = document.createElement("div");            this.cursor.id = "cursor";            this.cursor.classList.add("hidden");            document.body.append(this.cursor);        }        var el = document.getElementsByTagName('*');        for (let i = 0; i < el.length; i++)            if (getStyle(el[i], "cursor") == "pointer")                this.pt.push(el[i].outerHTML);        document.body.appendChild((this.scr = document.createElement("style")));        // 这里改变鼠标指针的颜色 由svg生成        this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' fill='%23F2A3FE' opacity='.5'/></svg>") 4 4, auto}`;    }    refresh() {        this.scr.remove();        this.cursor.classList.remove("hover");        this.cursor.classList.remove("active");        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    init() {        document.onmouseover  = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");        document.onmouseout   = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");        document.onmousemove  = e => {(this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = {x: e.clientX - 8, y: e.clientY - 8}; this.cursor.classList.remove("hidden");};        document.onmouseenter = e => this.cursor.classList.remove("hidden");        document.onmouseleave = e => this.cursor.classList.add("hidden");        document.onmousedown  = e => this.cursor.classList.add("active");        document.onmouseup    = e => this.cursor.classList.remove("active");    }    render() {        if (this.pos.prev) {            this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);            this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);            this.move(this.pos.prev.x, this.pos.prev.y);        } else {            this.pos.prev = this.pos.curr;        }        requestAnimationFrame(() => this.render());    }}(() => {    CURSOR = new Cursor();    // 需要重新获取列表时，使用 CURSOR.refresh()})();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -130,6 +132,17 @@
       <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '見て見て!!!';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = 'Timotei————';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
       
     </entry>
     

@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA_OO_Unit3_单元总结 | Old-Joy</title><meta name="author" content="Old Joy"><meta name="copyright" content="Old Joy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="「BUAA OO」第三单元总结题目说明本次面向对象编程第三单元的主题是：「BUAA OO」第三单元总结  第九次作业：根据 JML 规格实现Person类、Tag类、Network类 第十次作业：根据 JML 规格实现OfficialAccount类 第十一次作业：根据 JML 规格实现Message类及其3个子类  三次迭代说明第九次作业本次作业主要是根据JML规格实现三个接口中的所有方法，按照">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA_OO_Unit3_单元总结">
+<meta property="og:url" content="http://oldjoy.top/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Old-Joy">
+<meta property="og:description" content="「BUAA OO」第三单元总结题目说明本次面向对象编程第三单元的主题是：「BUAA OO」第三单元总结  第九次作业：根据 JML 规格实现Person类、Tag类、Network类 第十次作业：根据 JML 规格实现OfficialAccount类 第十一次作业：根据 JML 规格实现Message类及其3个子类  三次迭代说明第九次作业本次作业主要是根据JML规格实现三个接口中的所有方法，按照">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://oldjoy.top/img/Umiri.png">
+<meta property="article:published_time" content="2025-07-02T07:10:17.170Z">
+<meta property="article:modified_time" content="2025-07-02T07:18:10.389Z">
+<meta property="article:author" content="Old Joy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://oldjoy.top/img/Umiri.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "BUAA_OO_Unit3_单元总结",
+  "url": "http://oldjoy.top/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/",
+  "image": "http://oldjoy.top/img/Umiri.png",
+  "datePublished": "2025-07-02T07:10:17.170Z",
+  "dateModified": "2025-07-02T07:18:10.389Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Old Joy",
+      "url": "http://oldjoy.top/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://oldjoy.top/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA_OO_Unit3_单元总结',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(url(https://oldjoy.top/img/background.JPG));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/Umiri.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Old-Joy</span></a><a class="nav-page-title" href="/"><span class="site-name">BUAA_OO_Unit3_单元总结</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">BUAA_OO_Unit3_单元总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-02T07:10:17.170Z" title="发表于 2025-07-02 15:10:17">2025-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-02T07:18:10.389Z" title="更新于 2025-07-02 15:18:10">2025-07-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-02 15:18:10&quot;}" hidden></div><h1 id="「BUAA-OO」第三单元总结"><a href="#「BUAA-OO」第三单元总结" class="headerlink" title="「BUAA OO」第三单元总结"></a>「BUAA OO」第三单元总结</h1><h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>本次面向对象编程第三单元的主题是：「BUAA OO」第三单元总结</p>
+<ul>
+<li>第九次作业：根据 JML 规格实现<code>Person</code>类、<code>Tag</code>类、<code>Network</code>类</li>
+<li>第十次作业：根据 JML 规格实现<code>OfficialAccount</code>类</li>
+<li>第十一次作业：根据 JML 规格实现<code>Message</code>类及其3个子类</li>
+</ul>
+<h2 id="三次迭代说明"><a href="#三次迭代说明" class="headerlink" title="三次迭代说明"></a>三次迭代说明</h2><h3 id="第九次作业"><a href="#第九次作业" class="headerlink" title="第九次作业"></a>第九次作业</h3><p>本次作业主要是根据JML规格实现三个接口中的所有方法，按照JML规格严格实现理论上就是正确的，所以其实要多注意细节；但是完全按照JML实现显然是不行的，<del>哈哈tle了吧</del></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ ensures \result ==</span></span><br><span class="line"><span class="comment">      @         (\sum int i; 0 &lt;= i &amp;&amp; i &lt; persons.length;</span></span><br><span class="line"><span class="comment">      @             (\sum int j; i &lt; j &amp;&amp; j &lt; persons.length;</span></span><br><span class="line"><span class="comment">      @                 (\sum int k; j &lt; k &amp;&amp; k &lt; persons.length</span></span><br><span class="line"><span class="comment">      @                     &amp;&amp; getPerson(persons[i].getId()).isLinked(getPerson(persons[j].getId()))</span></span><br><span class="line"><span class="comment">      @                     &amp;&amp; getPerson(persons[j].getId()).isLinked(getPerson(persons[k].getId()))</span></span><br><span class="line"><span class="comment">      @                     &amp;&amp; getPerson(persons[k].getId()).isLinked(getPerson(persons[i].getId()));</span></span><br><span class="line"><span class="comment">      @                     1)));</span></span><br><span class="line"><span class="comment">      @*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="comment">/*@ pure @*/</span> <span class="type">int</span> <span class="title function_">queryTripleSum</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<p>比较典型的就是这个，按照JML里面写三重循环显然是会寄的，所以要想别的方法。</p>
+<p><del>经过和ai的讨论</del>，笔者发现其实可以用动态维护的方法。也就是说，先把这个值初始化成0，然后每次<code>addRelation</code>或者<code>modifyRelation</code>或者等等时，按照要求更新值的大小。这样其实是把算法的压力分配到了加减关系上面了，而且这样做耗时短，同时也避免了冗余的计算，<del>比如哪个坏蛋给你卡好几次<code>qts</code>这你不炸了吗</del>。</p>
+<p>除此之外，别的优化笔者倒是没怎么做。</p>
+<h4 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h4><p><img src="/img/ClassDiagram_ninth.png" alt="第9次作业类图"></p>
+<p>整体架构图如上所示，除了题目要求的类笔者并没有新增别的类。</p>
+<h4 id="代码复杂度分析"><a href="#代码复杂度分析" class="headerlink" title="代码复杂度分析"></a>代码复杂度分析</h4><p><img src="/img/Magnanimity_ninth.png" alt="第9次作业代码复杂度"></p>
+<p>这次作业的整体复杂度不算特别高。比较高的<code>Network</code>类里面是在维护查询的数据。</p>
+<h4 id="Junit测试感悟"><a href="#Junit测试感悟" class="headerlink" title="Junit测试感悟"></a>Junit测试感悟</h4><p>Junit的测试一开始有一个点一直卡着过不去，经过仔细阅读指导书后发现是<code>pure</code>测试的关键。一个方法是<code>pure</code>的，关键就在于在它调用前后，对象的属性不应当发生改变。所以，测试<code>pure</code>的关键就在于在调用该方法之前，将其要操作的对象深拷贝，然后和它调用后的对象进行比较。<del>当然有个更直白的方法就是直接新建两个属性一样的实例，其中某个作为对照组来测试，管它什么拷贝</del></p>
+<h3 id="第十次作业"><a href="#第十次作业" class="headerlink" title="第十次作业"></a>第十次作业</h3><p>本次作业新增了一个<code>OfficialAccount</code>类，另外，原先的类里面也有一些新的迭代内容。</p>
+<p>本次强测tle了好几个点，<del>五一玩的太嗨了</del>，没有做细致的优化。比较卡时间的就是这个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ public normal_behavior</span></span><br><span class="line"><span class="comment">      @ requires containsPerson(personId) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          getPerson(personId).containsTag(tagId);</span></span><br><span class="line"><span class="comment">      @ ensures \result == getPerson(personId).getTag(tagId).getValueSum();</span></span><br><span class="line"><span class="comment">      @ also</span></span><br><span class="line"><span class="comment">      @ public exceptional_behavior</span></span><br><span class="line"><span class="comment">      @ signals (PersonIdNotFoundException e) !containsPerson(personId);</span></span><br><span class="line"><span class="comment">      @ signals (TagIdNotFoundException e) containsPerson(personId) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @                                    !getPerson(personId).containsTag(tagId);</span></span><br><span class="line"><span class="comment">      @*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="comment">/*@ pure @*/</span> <span class="type">int</span> <span class="title function_">queryTagValueSum</span><span class="params">(<span class="type">int</span> personId, <span class="type">int</span> tagId)</span> <span class="keyword">throws</span> PersonIdNotFoundException, TagIdNotFoundException;</span><br></pre></td></tr></table></figure>
+<p>这个其实跟前一次作业还是一样的，做好动态规划就好了，并不是什么复杂的问题。当然这个要做动态规划的话还要注意一些深层次的细节。笔者在完成了动态规划之后还有一些细节上的bug，处理了很久。在第十一次作业的自测过程中，与这个方法有关还出了一个非常细小的bug，这个之后再说。</p>
+<p>在互测过程中，笔者也针对性的设计了一些和<code>qtvs</code>有关的测试数据，成功hack到了房友。</p>
+<p>另外，在进行了上述优化之后，所有强测点，笔者最慢的在本地用profiler分析，也能压缩到1600ms以内，但是评测机跑下来就是tle，<del>真该加强一下这个烂评测机了</del>。所以笔者在仔细考虑之后，将这个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ public normal_behavior</span></span><br><span class="line"><span class="comment">      @ requires containsPerson(id1) &amp;&amp; id1 == id2 ;</span></span><br><span class="line"><span class="comment">      @ ensures \result==0 ;</span></span><br><span class="line"><span class="comment">      @ also</span></span><br><span class="line"><span class="comment">      @ public normal_behavior</span></span><br><span class="line"><span class="comment">      @ requires containsPerson(id1) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          containsPerson(id2) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          id1 != id2 &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          (\exists PersonInterface[] path;</span></span><br><span class="line"><span class="comment">      @          path.length &gt;= 2 &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          path[0].equals(getPerson(id1)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          path[path.length - 1].equals(getPerson(id2));</span></span><br><span class="line"><span class="comment">      @          (\forall int i; 1 &lt;= i &amp;&amp; i &lt; path.length; path[i - 1].isLinked(path[i])));</span></span><br><span class="line"><span class="comment">      @ ensures  (\exists PersonInterface[] pathM;</span></span><br><span class="line"><span class="comment">      @          pathM.length &gt;= 2 &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          pathM[0].equals(getPerson(id1)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          pathM[pathM.length - 1].equals(getPerson(id2)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          (\forall int i; 1 &lt;= i &amp;&amp; i &lt; pathM.length; pathM[i - 1].isLinked(pathM[i]));</span></span><br><span class="line"><span class="comment">      @          (\forall PersonInterface[] path;</span></span><br><span class="line"><span class="comment">      @          path.length &gt;= 2 &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          path[0].equals(getPerson(id1)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          path[path.length - 1].equals(getPerson(id2)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          (\forall int i; 1 &lt;= i &amp;&amp; i &lt; path.length; path[i - 1].isLinked(path[i]));</span></span><br><span class="line"><span class="comment">      @          (\sum int i; 0 &lt;= i &amp;&amp; i &lt; path.length; 1) &gt;=</span></span><br><span class="line"><span class="comment">      @          (\sum int i; 0 &lt;= i &amp;&amp; i &lt; pathM.length; 1)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @          \result==(\sum int i; 1 &lt;= i &amp;&amp; i &lt; pathM.length; 1));</span></span><br><span class="line"><span class="comment">      @ also</span></span><br><span class="line"><span class="comment">      @ public exceptional_behavior</span></span><br><span class="line"><span class="comment">      @ signals (PersonIdNotFoundException e) !containsPerson(id1);</span></span><br><span class="line"><span class="comment">      @ signals (PersonIdNotFoundException e) containsPerson(id1) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @                                       !containsPerson(id2);</span></span><br><span class="line"><span class="comment">      @ signals (PathNotFoundException e) containsPerson(id1) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @                                   containsPerson(id2) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @         !(\exists PersonInterface[] path;</span></span><br><span class="line"><span class="comment">      @         path.length &gt;= 2 &amp;&amp;</span></span><br><span class="line"><span class="comment">      @         path[0].equals(getPerson(id1)) &amp;&amp;</span></span><br><span class="line"><span class="comment">      @         path[path.length - 1].equals(getPerson(id2));</span></span><br><span class="line"><span class="comment">      @         (\forall int i; 1 &lt;= i &amp;&amp; i &lt; path.length; path[i - 1].isLinked(path[i])));</span></span><br><span class="line"><span class="comment">      @*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="comment">/*@ pure @*/</span> <span class="type">int</span> <span class="title function_">queryShortestPath</span><span class="params">(<span class="type">int</span> id1,<span class="type">int</span> id2)</span> <span class="keyword">throws</span> PersonIdNotFoundException, PathNotFoundException;</span><br></pre></td></tr></table></figure>
+<p>由常规的BFS算法，即广度优先算法，优化成了双向BFS算法。至此之后，最慢的点也能在500ms就能跑完了。</p>
+<p>双向 bfs，或说图的双向搜索算法，是对于广度优先搜索算法的一种改进。bfs 从起点开始由浅入深地遍历，直到找到终点；而双向 bfs 则从起点与终点同时开始遍历，直到遍历的区域相交（说明找到了最短路径）。</p>
+<h4 id="架构图-1"><a href="#架构图-1" class="headerlink" title="架构图"></a>架构图</h4><p><img src="/img/ClassDiagram_tenth.png" alt="第10次作业类图"></p>
+<h4 id="代码复杂度分析-1"><a href="#代码复杂度分析-1" class="headerlink" title="代码复杂度分析"></a>代码复杂度分析</h4><p><img src="/img/Magnanimity_tenth.png" alt="第10次作业代码复杂度"></p>
+<p>本次作业复杂度整体就有点高了，主要集中在<code>Network</code>类，因为其中包含了<code>queryShortestPath</code>方法和<code>modifyRelation</code>方法。</p>
+<h3 id="第十一次作业"><a href="#第十一次作业" class="headerlink" title="第十一次作业"></a>第十一次作业</h3><p>这次作业主要新增了<code>Message</code>类以及它的三个子类。</p>
+<p>本次作业值得注意的点倒是不算多，笔者个人认为只有一个：在第十一次作业里面，<code>sendMessage</code>的加入，可能使得相同的文章可能会被转发到一个人的容器中。在删除的时候，需要将所有该id的文章都删掉。</p>
+<p>另外，在自行测试的时候，笔者发现了一个非常隐蔽的bug。因为<code>Tag</code>是允许id相同但是实例不同的。也就是说，两个<code>person</code>，他们各自拥有一个<code>tag</code>，这两个<code>tag</code>显然实例是不同的，但是他们可以拥有相同的id。在笔者的实现中，当发生了<code>modifyRelation</code>的时候，需要找到同时包含这两个<code>person</code>的<code>tag</code>，因此笔者采用了一个<code>HashMap</code>来记录这个人所在的<code>tag</code>，而key便是使用了<code>tag</code>的id。然而，一个人可能同时处于id相同的不同<code>tag</code>里面，<code>HashMap</code>的key一定是唯一的，所以用<code>HashMap</code>来记录必然是错误的。</p>
+<p>笔者在与小伙伴们讨论之后，采用了这样一种方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">TagKey</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> ownerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> tagId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TagKey</span><span class="params">(<span class="type">int</span> ownerId, <span class="type">int</span> tagId)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.ownerId = ownerId;</span><br><span class="line">        <span class="built_in">this</span>.tagId = tagId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) &#123; <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        <span class="type">TagKey</span> <span class="variable">tagKey</span> <span class="operator">=</span> (TagKey) o;</span><br><span class="line">        <span class="keyword">return</span> ownerId == tagKey.ownerId &amp;&amp; tagId == tagKey.tagId; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123; </span><br><span class="line">        <span class="keyword">return</span> Objects.hash(ownerId, tagId); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>采用这样的一种数据结构来记录<code>tag</code>的“唯一id”，这样就确保了key是唯一的</p>
+<h4 id="架构图-2"><a href="#架构图-2" class="headerlink" title="架构图"></a>架构图</h4><p><img src="/img/ClassDiagram_eleventh.png" alt="第11次作业类图"></p>
+<h4 id="代码复杂度分析-2"><a href="#代码复杂度分析-2" class="headerlink" title="代码复杂度分析"></a>代码复杂度分析</h4><p><img src="/img/Magnanimity_eleventh.png" alt="第11次代码复杂度"></p>
+<h2 id="测试过程"><a href="#测试过程" class="headerlink" title="测试过程"></a>测试过程</h2><h3 id="测试思想"><a href="#测试思想" class="headerlink" title="测试思想"></a>测试思想</h3><h4 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h4><blockquote>
+<p>黑盒测试，把程序看作一个不能打开的黑盒子，在完全不考虑程序内部结构和内部特性的情况下，在程序接口进行测试。黑盒测试着眼于程序外部结构，不考虑内部逻辑结构，主要针对软件界面和软件功能进行测试。<br>——百度百科，黑盒测试</p>
+</blockquote>
+<p>评测机其实就是一种黑盒测试，它只关心程序是否能产生正确的输出，不关心程序内部是如何运作的。</p>
+<h4 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h4><blockquote>
+<p>白盒测试是一种测试用例设计方法，盒子指的是被测试的软件，白盒指的是盒子是可视的，即清楚盒子内部的东西以及里面是如何运作的。“白盒”法全面了解程序内部逻辑结构、对所有逻辑路径进行测试。<br>——百度百科，白盒测试</p>
+</blockquote>
+<p>本单元要求学生设计的 Junit 测试便是一种白盒测试，它要求被测方法的行为完全符合规格说明，不能产生越界的行为。</p>
+<h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><h4 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h4><p>单元测试是针对程序模块来进行正确性检验的测试工作。在过程化编程中，一个单元就是单个程序、函数、过程等；对于面向对象编程，最小单元就是方法。单元测试的目标是隔离程序部件并证明这些单个部件是正确的。</p>
+<p>本单元的Junit就是一种单元测试。</p>
+<h4 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h4><blockquote>
+<p>功能测试就是对产品的各功能进行验证，根据功能测试用例，逐项测试，检查产品是否达到用户要求的功能。功能测试也叫数据驱动测试，只需考虑需要测试的各个功能，不需要考虑整个软件的内部结构及代码。<br>——百度百科，功能测试</p>
+</blockquote>
+<p>功能测试其实就是一种黑盒测试。</p>
+<h4 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h4><blockquote>
+<p>集成测试，即对程序模块采用一次性或增值方式组装起来，对系统的接口进行正确性检验的测试工作。整合测试一般在单元测试之后、系统测试之前进行。实践表明，有时模块虽然可以单独工作，但是并不能保证组装起来也可以同时工作。该测试，可以由程序员或是软件品保工程师进行。<br>——Wikipedia，集成测试</p>
+</blockquote>
+<h4 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h4><p>压力测试，顾名思义就是针对特定的系统、组件、程序等，采用超过正常使用条件下的情况进行运转，确认在极限状态下，程序是否能够正常运转。</p>
+<p>到目前笔者还没用使用过这种测试方式，但似乎航空航天设计经常会使用这种测试方法（确认系统在什么条件下会损坏，以及安全使用条件）。</p>
+<h4 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h4><blockquote>
+<p>回归测试是指修改了旧代码后，重新进行测试以确认修改没有引入新的错误或导致其他代码产生错误。自动回归测试将大幅降低系统测试、维护升级等阶段的成本。<br>——百度百科，回归测试</p>
+</blockquote>
+<h3 id="数据构造"><a href="#数据构造" class="headerlink" title="数据构造"></a>数据构造</h3><p>本次笔者只写了一个简易的数据生成器，规范了生成数据的合法性以后，手动添加了一些条件来增加数据的强度。生成数据时应当优先考虑JML规格中描述的每一个方法的behavior。由于时间有限，并没有刻意去构造足够强大的测试数据。因此笔者的数据生成器主要在本地测试时发挥了作用，在互测阶段成功刀中了几个人。</p>
+<h2 id="如何引导大模型在不同场景下完成复杂任务"><a href="#如何引导大模型在不同场景下完成复杂任务" class="headerlink" title="如何引导大模型在不同场景下完成复杂任务"></a>如何引导大模型在不同场景下完成复杂任务</h2><p>现在的大模型整体可用性非常高，一般来讲不用刻意去多步引导。笔者尝试过直接使用大模型完成第十一次作业，其完成的比较完善，性能方面有所欠缺，<del>代码风格惨不忍睹</del>，但其他方面确实很优异，笔者只进行了细节上的优化与维护和性能上的改善。</p>
+<h2 id="契约式设计"><a href="#契约式设计" class="headerlink" title="契约式设计"></a>契约式设计</h2><p>契约式设计是一种设计计算机软件的方法。这种方法要求软件设计者为软件组件定义正式的，精确的并且可验证的接口。</p>
+<p>契约式设计的核心在于分离规格设计与代码实现。设计者通过需求来设计与撰写每个方法的规格，程序员通过规格来实现代码。这种设计思想可以有效减少代码中的bug数量，提高代码的可靠性与可维护性；但由于契约式设计需要为每个类书写详细的契约（契约长度往往会超过代码本身的长度），这种设计方式会显著地降低开发的速度。因此在实际应用中往往在设计代码的核心模块中使用，以保证核心模块的正确性。</p>
+<p>JML是一门非常冷门的规格建模语言，课程组并未让学生们完成由需求设计规格这一层次，而是将三次迭代的重点放在了由规格实现代码。基于规格的层次化设计有两个层次，一是根据需求设计规格，二是根据规格实现代码。课程组将绝大部分重心都放到了后者之上，笔者认为不是很合理。可以尝试让同学们自己编写JML规格。</p>
+<h2 id="Junit测试"><a href="#Junit测试" class="headerlink" title="Junit测试"></a>Junit测试</h2><p>Junit测试是由规格设计引来的测试，旨在验证代码是否符合规格说明书。想要进行Junit测试，前提是拥有一个完全正确的规格，否则Junit测试完全是一纸空谈。</p>
+<h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><p>本次Junit测试我并没有考虑随机数据构造，只是选择了15-30个有特色的数据点进行测试充分覆盖JML规格中各个<code>behavior</code>的<code>requires</code>和<code>ensures</code>。</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>深度检査JML规格中<code>not_assigned</code>的属性，保存一份方法执行前的深拷贝，保证各个属性未发生变化。逐行检查<code>requires</code>和<code>ensures</code>。</p>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本单元的学习，笔者大致学习到规格化设计的步骤，体会到规格化设计的优点。本单元对于Junit的学习，让我理解了Junit的使用方法与其存在的意义。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://oldjoy.top">Old Joy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://oldjoy.top/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/">http://oldjoy.top/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://oldjoy.top" target="_blank">Old-Joy</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Umiri.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/06/13/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/" title="BUAA_OO_Unit2_单元总结"><img class="cover" src="/img/Mutsumi.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">BUAA_OO_Unit2_单元总结</div></div><div class="info-2"><div class="info-item-1">OO-Unit2...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Old Joy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Old-Joy"><i></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Old-Joy" target="_blank" title="Github"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="mailto:812601371@qq.com" target="_blank" title="Email"><i class="fas fa-envelop" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><strong>Old Joy's Blog</strong></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8CBUAA-OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">「BUAA OO」第三单元总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">题目说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E8%BF%AD%E4%BB%A3%E8%AF%B4%E6%98%8E"><span class="toc-number">1.2.</span> <span class="toc-text">三次迭代说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E6%AC%A1%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">第九次作业</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">代码复杂度分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Junit%E6%B5%8B%E8%AF%95%E6%84%9F%E6%82%9F"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">Junit测试感悟</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E6%AC%A1%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">第十次作业</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">代码复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">第十一次作业</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE-2"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-2"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">代码复杂度分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">测试过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%80%9D%E6%83%B3"><span class="toc-number">1.3.1.</span> <span class="toc-text">测试思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">黑盒测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">白盒测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">集成测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">压力测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">回归测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9E%84%E9%80%A0"><span class="toc-number">1.3.3.</span> <span class="toc-text">数据构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%95%E5%AF%BC%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E4%B8%8D%E5%90%8C%E5%9C%BA%E6%99%AF%E4%B8%8B%E5%AE%8C%E6%88%90%E5%A4%8D%E6%9D%82%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.</span> <span class="toc-text">如何引导大模型在不同场景下完成复杂任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%91%E7%BA%A6%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">契约式设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Junit%E6%B5%8B%E8%AF%95"><span class="toc-number">1.6.</span> <span class="toc-text">Junit测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="toc-number">1.6.1.</span> <span class="toc-text">数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%A8%80"><span class="toc-number">1.6.2.</span> <span class="toc-text">断言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">心得体会</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/" title="BUAA_OO_Unit3_单元总结"><img src="/img/Umiri.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OO_Unit3_单元总结"/></a><div class="content"><a class="title" href="/2025/07/02/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/" title="BUAA_OO_Unit3_单元总结">BUAA_OO_Unit3_单元总结</a><time datetime="2025-07-02T07:10:17.170Z" title="发表于 2025-07-02 15:10:17">2025-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/13/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/" title="BUAA_OO_Unit2_单元总结"><img src="/img/Mutsumi.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OO_Unit2_单元总结"/></a><div class="content"><a class="title" href="/2025/06/13/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/" title="BUAA_OO_Unit2_单元总结">BUAA_OO_Unit2_单元总结</a><time datetime="2025-06-13T14:14:03.643Z" title="发表于 2025-06-13 22:14:03">2025-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/09/OS-Lab4/BUAA_OS_Lab4%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab4_实验报告"><img src="/img/Uika.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OS_Lab4_实验报告"/></a><div class="content"><a class="title" href="/2025/05/09/OS-Lab4/BUAA_OS_Lab4%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab4_实验报告">BUAA_OS_Lab4_实验报告</a><time datetime="2025-05-09T15:53:13.878Z" title="发表于 2025-05-09 23:53:13">2025-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Old Joy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script async src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="230,230,250" opacity="0.3" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

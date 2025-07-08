@@ -281,3 +281,16 @@ h6::before {
   animation: ccc 6s linear infinite;
 }
 
+.page-type-tags #page-header {
+  background-image: url(/img/index.jpg) !important;
+}
+
+/* 分类页 */
+.page-type-categories #page-header {
+  background-image: url(/img/index.jpg) !important;
+}
+
+/* 归档页 */
+.page-type-archives #page-header {
+  background-image: url(/img/index.jpg) !important;
+}

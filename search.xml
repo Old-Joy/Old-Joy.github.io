@@ -150,11 +150,44 @@
     
     
     <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
         <content type="html"><![CDATA[/* 侧边栏个人信息卡片动态渐变色 */#aside-content > .card-widget.card-info {    background: linear-gradient(      -45deg,      #e1cda6,      #d8b75d,      #66afd4,      #6d6df0,      #db92d5    );    box-shadow: 0 0 5px rgb(66, 68, 68);    position: relative;    background-size: 400% 400%;    animation: Gradient 10s ease infinite !important;  }  @keyframes Gradient {    0% {      background-position: 0% 50%;    }    50% {      background-position: 100% 50%;    }    100% {      background-position: 0% 50%;    }  }    /* 黑夜模式适配 */  [data-theme="dark"] #aside-content > .card-widget.card-info {    background: #191919ee;  }    /* 个人信息Follow me按钮 */  #aside-content > .card-widget.card-info > #card-info-btn {    background-color: #3eb8be;    border-radius: 8px;  }/* 鼠标样式 */#cursor {    position: fixed;    width: 16px;    height: 16px;    /* 这里改变跟随的底色 */    background: rgb(222, 143, 234);    border-radius: 8px;    opacity: 0.25;    z-index: 10086;    pointer-events: none;    transition: 0.2s ease-in-out;    transition-property: background, opacity, transform;  }    #cursor.hidden {    opacity: 0;  }    #cursor.hover {    opacity: 0.1;    transform: scale(2.5);    -webkit-transform: scale(2.5);    -moz-transform: scale(2.5);    -ms-transform: scale(2.5);    -o-transform: scale(2.5);  }    #cursor.active {    opacity: 0.5;    transform: scale(0.5);    -webkit-transform: scale(0.5);    -moz-transform: scale(0.5);    -ms-transform: scale(0.5);    -o-transform: scale(0.5);  }  :root {    --trans-light: rgba(255, 255, 255, 0.88);    --trans-dark: rgba(25, 25, 25, 0.88);    --border-style: 1px solid rgb(169, 169, 169);    --backdrop-filter: blur(5px) saturate(150%);  }    /* 首页文章卡片 */  #recent-posts > .recent-post-item {    background: var(--trans-light);    -webkit-backdrop-filter: var(--backdrop-filter);            backdrop-filter: var(--backdrop-filter);    border-radius: 25px;    border: var(--border-style);  }    /* 首页侧栏卡片 */  #aside-content .card-widget {    background: var(--trans-light);    -webkit-backdrop-filter: var(--backdrop-filter);            backdrop-filter: var(--backdrop-filter);    border-radius: 18px;    border: var(--border-style);  }    /* 文章页、归档页、普通页面 */  div#post,  div#page,  div#archive {    background: var(--trans-light);    -webkit-backdrop-filter: var(--backdrop-filter);            backdrop-filter: var(--backdrop-filter);    border: var(--border-style);    border-radius: 20px;  }    /* 导航栏 */  #page-header.nav-fixed #nav {    background: rgba(255, 255, 255, 0.75);    -webkit-backdrop-filter: var(--backdrop-filter);            backdrop-filter: var(--backdrop-filter);  }    [data-theme="dark"] #page-header.nav-fixed #nav {    background: rgba(0, 0, 0, 0.7) !important;  }    /* 夜间模式遮罩 */  [data-theme="dark"] #recent-posts > .recent-post-item,  [data-theme="dark"] #aside-content .card-widget,  [data-theme="dark"] div#post,  [data-theme="dark"] div#archive,  [data-theme="dark"] div#page {    background: var(--trans-dark);  }      /* 夜间模式页脚页头遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }    /* 阅读模式 */  .read-mode #aside-content .card-widget {    background: rgba(158, 204, 171, 0.5) !important;  }  .read-mode div#post {    background: rgba(158, 204, 171, 0.5) !important;  }    /* 夜间模式下的阅读模式 */  [data-theme="dark"] .read-mode #aside-content .card-widget {    background: rgba(25, 25, 25, 0.9) !important;    color: #ffffff;  }  [data-theme="dark"] .read-mode div#post {    background: rgba(25, 25, 25, 0.9) !important;    color: #ffffff;  }  .pace {    -webkit-pointer-events: none;    pointer-events: none;    -webkit-user-select: none;    -moz-user-select: none;    user-select: none;    z-index: 2000;    position: fixed;    margin: auto;    top: 4px;    left: 0;    right: 0;    height: 8px;    border-radius: 8px;    width: 7rem;    background: #eaecf2;    border: 1px #e3e8f7;    overflow: hidden}.pace-inactive .pace-progress {    opacity: 0;    transition: .3s ease-in}.pace .pace-progress {    -ms-box-sizing: border-box;    -o-box-sizing: border-box;    box-sizing: border-box;    transform: translate3d(0, 0, 0);    max-width: 200px;    position: absolute;    z-index: 2000;    display: block;    top: 0;    right: 100%;    height: 100%;    width: 100%;    /* linear-gradient(to right, #3494e6, #ec6ead) */    background: linear-gradient(to right, #43cea2, #3866ca);    animation: gradient 2s ease infinite;    background-size: 200%}.pace.pace-inactive {    opacity: 0;    transition: .3s;    top: -8px}/* 文章页H1-H6图标样式效果 *//* 控制风车转动速度 4s那里可以自己调节快慢 */h1::before,h2::before,h3::before,h4::before,h5::before,h6::before {  animation: ccc 5s linear infinite;}/* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */@keyframes ccc {  0% {    transform: rotate(0deg);  }  to {    transform: rotate(-1turn);  }}/* 设置风车颜色 */#content-inner.layout h1::before {  color: #4953da;  margin-left: -1.55rem;  font-size: 1.3rem;  margin-top: -0.23rem;}#content-inner.layout h2::before {  color: #ea73f8;  margin-left: -1.35rem;  font-size: 1.1rem;  margin-top: -0.12rem;}#content-inner.layout h3::before {  color: #ac3fff;  margin-left: -1.22rem;  font-size: 0.95rem;  margin-top: -0.09rem;}#content-inner.layout h4::before {  color: #55f8e0;  margin-left: -1.05rem;  font-size: 0.8rem;  margin-top: -0.09rem;}#content-inner.layout h5::before {  color: #27a20b;  margin-left: -0.9rem;  font-size: 0.7rem;  margin-top: 0rem;}#content-inner.layout h6::before {  color: #b1ad77;  margin-left: -0.9rem;  font-size: 0.66rem;  margin-top: 0rem;}/* s设置风车hover动效 6s那里可以自己调节快慢*/#content-inner.layout h1:hover,#content-inner.layout h2:hover,#content-inner.layout h3:hover,#content-inner.layout h4:hover,#content-inner.layout h5:hover,#content-inner.layout h6:hover {  color: #0080ff;}#content-inner.layout h1:hover::before,#content-inner.layout h2:hover::before,#content-inner.layout h3:hover::before,#content-inner.layout h4:hover::before,#content-inner.layout h5:hover::before,#content-inner.layout h6:hover::before {  color: #0080ff;  animation: ccc 6s linear infinite;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/cursor.js"/>
+      <url>/js/cursor.js</url>
+      
+        <content type="html"><![CDATA[var CURSOR;Math.lerp = (a, b, n) => (1 - n) * a + n * b;const getStyle = (el, attr) => {    try {        return window.getComputedStyle            ? window.getComputedStyle(el)[attr]            : el.currentStyle[attr];    } catch (e) {}    return "";};class Cursor {    constructor() {        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    move(left, top) {        this.cursor.style["left"] = `${left}px`;        this.cursor.style["top"] = `${top}px`;    }    create() {        if (!this.cursor) {            this.cursor = document.createElement("div");            this.cursor.id = "cursor";            this.cursor.classList.add("hidden");            document.body.append(this.cursor);        }        var el = document.getElementsByTagName('*');        for (let i = 0; i < el.length; i++)            if (getStyle(el[i], "cursor") == "pointer")                this.pt.push(el[i].outerHTML);        document.body.appendChild((this.scr = document.createElement("style")));        // 这里改变鼠标指针的颜色 由svg生成        this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' fill='%23F2A3FE' opacity='.5'/></svg>") 4 4, auto}`;    }    refresh() {        this.scr.remove();        this.cursor.classList.remove("hover");        this.cursor.classList.remove("active");        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    init() {        document.onmouseover  = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");        document.onmouseout   = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");        document.onmousemove  = e => {(this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = {x: e.clientX - 8, y: e.clientY - 8}; this.cursor.classList.remove("hidden");};        document.onmouseenter = e => this.cursor.classList.remove("hidden");        document.onmouseleave = e => this.cursor.classList.add("hidden");        document.onmousedown  = e => this.cursor.classList.add("active");        document.onmouseup    = e => this.cursor.classList.remove("active");    }    render() {        if (this.pos.prev) {            this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);            this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);            this.move(this.pos.prev.x, this.pos.prev.y);        } else {            this.pos.prev = this.pos.curr;        }        requestAnimationFrame(() => this.render());    }}(() => {    CURSOR = new Cursor();    // 需要重新获取列表时，使用 CURSOR.refresh()})();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/snow.js"/>
+      <url>/js/snow.js</url>
+      
+        <content type="html"><![CDATA[if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {    // 移动端不显示} else {    document.write('<canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none"></canvas>');    window && (() => {        let e = {            flakeCount: 50, // 雪花数目            minDist: 150,   // 最小距离            color: "255, 255, 255", // 雪花颜色            size: 1.5,  // 雪花大小            speed: .5,  // 雪花速度            opacity: .7,    // 雪花透明度            stepsize: .5    // 步距        };        const t = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (e) {            window.setTimeout(e, 1e3 / 60)        }            ;        window.requestAnimationFrame = t;        const i = document.getElementById("snow"),            n = i.getContext("2d"),            o = e.flakeCount;        let a = -100,            d = -100,            s = [];        i.width = window.innerWidth,            i.height = window.innerHeight;        const h = () => {            n.clearRect(0, 0, i.width, i.height);            const r = e.minDist;            for (let t = 0; t < o; t++) {                let o = s[t];                const h = a,                    w = d,                    m = o.x,                    c = o.y,                    p = Math.sqrt((h - m) * (h - m) + (w - c) * (w - c));                if (p < r) {                    const e = (h - m) / p,                        t = (w - c) / p,                        i = r / (p * p) / 2;                    o.velX -= i * e,                        o.velY -= i * t                } else                    o.velX *= .98,                        o.velY < o.speed && o.speed - o.velY > .01 && (o.velY += .01 * (o.speed - o.velY)),                        o.velX += Math.cos(o.step += .05) * o.stepSize;                n.fillStyle = "rgba(" + e.color + ", " + o.opacity + ")",                    o.y += o.velY,                    o.x += o.velX,                    (o.y >= i.height || o.y <= 0) && l(o),                    (o.x >= i.width || o.x <= 0) && l(o),                    n.beginPath(),                    n.arc(o.x, o.y, o.size, 0, 2 * Math.PI),                    n.fill()            }            t(h)        }            , l = e => {                e.x = Math.floor(Math.random() * i.width),                    e.y = 0,                    e.size = 3 * Math.random() + 2,                    e.speed = 1 * Math.random() + .5,                    e.velY = e.speed,                    e.velX = 0,                    e.opacity = .5 * Math.random() + .3            }            ;        document.addEventListener("mousemove", (e => {            a = e.clientX,                d = e.clientY        }        )),            window.addEventListener("resize", (() => {                i.width = window.innerWidth,                    i.height = window.innerHeight            }            )),            (() => {                for (let t = 0; t < o; t++) {                    const t = Math.floor(Math.random() * i.width)                        , n = Math.floor(Math.random() * i.height)                        , o = 3 * Math.random() + e.size                        , a = 1 * Math.random() + e.speed                        , d = .5 * Math.random() + e.opacity;                    s.push({                        speed: a,                        velX: 0,                        velY: a,                        x: t,                        y: n,                        size: o,                        stepSize: Math.random() / 30 * e.stepsize,                        step: 0,                        angle: 180,                        opacity: d                    })                }                h()            }            )()    }    )();}]]></content>
       
     </entry>
     
@@ -173,54 +206,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/cursor.js"/>
-      <url>/js/cursor.js</url>
-      
-        <content type="html"><![CDATA[var CURSOR;Math.lerp = (a, b, n) => (1 - n) * a + n * b;const getStyle = (el, attr) => {    try {        return window.getComputedStyle            ? window.getComputedStyle(el)[attr]            : el.currentStyle[attr];    } catch (e) {}    return "";};class Cursor {    constructor() {        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    move(left, top) {        this.cursor.style["left"] = `${left}px`;        this.cursor.style["top"] = `${top}px`;    }    create() {        if (!this.cursor) {            this.cursor = document.createElement("div");            this.cursor.id = "cursor";            this.cursor.classList.add("hidden");            document.body.append(this.cursor);        }        var el = document.getElementsByTagName('*');        for (let i = 0; i < el.length; i++)            if (getStyle(el[i], "cursor") == "pointer")                this.pt.push(el[i].outerHTML);        document.body.appendChild((this.scr = document.createElement("style")));        // 这里改变鼠标指针的颜色 由svg生成        this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' fill='%23F2A3FE' opacity='.5'/></svg>") 4 4, auto}`;    }    refresh() {        this.scr.remove();        this.cursor.classList.remove("hover");        this.cursor.classList.remove("active");        this.pos = {curr: null, prev: null};        this.pt = [];        this.create();        this.init();        this.render();    }    init() {        document.onmouseover  = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");        document.onmouseout   = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");        document.onmousemove  = e => {(this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = {x: e.clientX - 8, y: e.clientY - 8}; this.cursor.classList.remove("hidden");};        document.onmouseenter = e => this.cursor.classList.remove("hidden");        document.onmouseleave = e => this.cursor.classList.add("hidden");        document.onmousedown  = e => this.cursor.classList.add("active");        document.onmouseup    = e => this.cursor.classList.remove("active");    }    render() {        if (this.pos.prev) {            this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);            this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);            this.move(this.pos.prev.x, this.pos.prev.y);        } else {            this.pos.prev = this.pos.curr;        }        requestAnimationFrame(() => this.render());    }}(() => {    CURSOR = new Cursor();    // 需要重新获取列表时，使用 CURSOR.refresh()})();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/js/snow.js"/>
-      <url>/js/snow.js</url>
-      
-        <content type="html"><![CDATA[if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {    // 移动端不显示} else {    document.write('<canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none"></canvas>');    window && (() => {        let e = {            flakeCount: 50, // 雪花数目            minDist: 150,   // 最小距离            color: "255, 255, 255", // 雪花颜色            size: 1.5,  // 雪花大小            speed: .5,  // 雪花速度            opacity: .7,    // 雪花透明度            stepsize: .5    // 步距        };        const t = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (e) {            window.setTimeout(e, 1e3 / 60)        }            ;        window.requestAnimationFrame = t;        const i = document.getElementById("snow"),            n = i.getContext("2d"),            o = e.flakeCount;        let a = -100,            d = -100,            s = [];        i.width = window.innerWidth,            i.height = window.innerHeight;        const h = () => {            n.clearRect(0, 0, i.width, i.height);            const r = e.minDist;            for (let t = 0; t < o; t++) {                let o = s[t];                const h = a,                    w = d,                    m = o.x,                    c = o.y,                    p = Math.sqrt((h - m) * (h - m) + (w - c) * (w - c));                if (p < r) {                    const e = (h - m) / p,                        t = (w - c) / p,                        i = r / (p * p) / 2;                    o.velX -= i * e,                        o.velY -= i * t                } else                    o.velX *= .98,                        o.velY < o.speed && o.speed - o.velY > .01 && (o.velY += .01 * (o.speed - o.velY)),                        o.velX += Math.cos(o.step += .05) * o.stepSize;                n.fillStyle = "rgba(" + e.color + ", " + o.opacity + ")",                    o.y += o.velY,                    o.x += o.velX,                    (o.y >= i.height || o.y <= 0) && l(o),                    (o.x >= i.width || o.x <= 0) && l(o),                    n.beginPath(),                    n.arc(o.x, o.y, o.size, 0, 2 * Math.PI),                    n.fill()            }            t(h)        }            , l = e => {                e.x = Math.floor(Math.random() * i.width),                    e.y = 0,                    e.size = 3 * Math.random() + 2,                    e.speed = 1 * Math.random() + .5,                    e.velY = e.speed,                    e.velX = 0,                    e.opacity = .5 * Math.random() + .3            }            ;        document.addEventListener("mousemove", (e => {            a = e.clientX,                d = e.clientY        }        )),            window.addEventListener("resize", (() => {                i.width = window.innerWidth,                    i.height = window.innerHeight            }            )),            (() => {                for (let t = 0; t < o; t++) {                    const t = Math.floor(Math.random() * i.width)                        , n = Math.floor(Math.random() * i.height)                        , o = 3 * Math.random() + e.size                        , a = 1 * Math.random() + e.speed                        , d = .5 * Math.random() + e.opacity;                    s.push({                        speed: a,                        velX: 0,                        velY: a,                        x: t,                        y: n,                        size: o,                        stepSize: Math.random() / 30 * e.stepsize,                        step: 0,                        angle: 180,                        opacity: d                    })                }                h()            }            )()    }    )();}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/title.js"/>
       <url>/js/title.js</url>
       
         <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '見て見て!!!';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = 'Timotei————';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -241,6 +230,17 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       

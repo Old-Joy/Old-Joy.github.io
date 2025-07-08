@@ -285,7 +285,3 @@ h6::before {
   background-color: transparent !important;
 }
 
-/* --- 确保顶部图能显示出来 --- */
-#page-header.not-home-page {
-  background-image: url(/img/index.jpg) !important;
-}

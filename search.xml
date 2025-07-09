@@ -221,6 +221,17 @@
     
     
     <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
@@ -254,17 +265,6 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/js/nav.js"/>
       <url>/js/nav.js</url>
@@ -288,17 +288,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/sun_moon.js"/>
-      <url>/js/sun_moon.js</url>
-      
-        <content type="html"><![CDATA[function switchNightMode() {  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>'),    setTimeout(function() {      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),        setTimeout(function() {          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';          setTimeout(function() {            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();          }, 1e3);        }, 2e3)    })  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'  if (nowMode === 'light') {    activateDarkMode()    saveToLocal.set('theme', 'dark', 2)    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')  } else {    activateLightMode()    saveToLocal.set('theme', 'light', 2)    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')  }  // handle some cases  typeof utterancesTheme === 'function' && utterancesTheme()  typeof FB === 'object' && window.loadFBComment()  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/title.js"/>
       <url>/js/title.js</url>
       
@@ -309,9 +298,20 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title></title>
+      <link href="/js/sun_moon.js"/>
+      <url>/js/sun_moon.js</url>
+      
+        <content type="html"><![CDATA[function switchNightMode() {  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>'),    setTimeout(function() {      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),        setTimeout(function() {          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';          setTimeout(function() {            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();          }, 1e3);        }, 2e3)    })  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'  if (nowMode === 'light') {    activateDarkMode()    saveToLocal.set('theme', 'dark', 2)    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')  } else {    activateLightMode()    saveToLocal.set('theme', 'light', 2)    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')  }  // handle some cases  typeof utterancesTheme === 'function' && utterancesTheme()  typeof FB === 'object' && window.loadFBComment()  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -331,9 +331,9 @@
     
     
     <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       

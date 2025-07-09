@@ -300,3 +300,18 @@ h6::before {
   background-color: rgba(255, 255, 255, 0.7); /* 白色遮罩，0.7是透明度，可以自己调整 */
   z-index: -1;
 }
+
+.nav-fixed #nav{
+    transform: translateY(58px)!important;
+    -webkit-transform: translateY(58px)!important;
+    -moz-transform: translateY(58px)!important;
+    -ms-transform: translateY(58px)!important;
+    -o-transform: translateY(58px)!important;
+}
+#nav{
+    transition: none!important;
+    -webkit-transition: none!important;
+    -moz-transition: none!important;
+    -ms-transition: none!important;
+    -o-transition: none!important;
+}

@@ -439,3 +439,83 @@ center#name-container {
   color: #fff;
   background-color: var(--theme-color);
 }
+
+/* --- 白天黑夜切换动画样式 --- */
+
+/* 定义动画的背景和遮罩层 */
+.Cuteen_DarkSky,
+.Cuteen_DarkSky:before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 88888888;
+}
+
+/* 白天模式下的背景 (从粉到黄的渐变) */
+.Cuteen_DarkSky {
+  background: linear-gradient(#feb8b0, #fef9db);
+}
+
+/* 黑夜模式的背景 (从深紫到蓝的渐变)，默认透明 */
+.Cuteen_DarkSky:before {
+  transition: 2s ease all;
+  opacity: 0;
+  background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);
+}
+
+/* 当启用 DarkMode 时，让黑夜模式的背景显现出来 */
+.DarkMode .Cuteen_DarkSky:before {
+  opacity: 1;
+}
+
+/* 定义旋转的星球容器 */
+.Cuteen_DarkPlanet {
+  z-index: 99999999;
+  position: fixed;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  animation: CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1);
+  transform-origin: center bottom;
+}
+
+/* 定义星球的旋转动画 */
+@keyframes CuteenPlanetMove {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 定义星球本身 (月亮) */
+.Cuteen_DarkPlanet:after {
+  position: absolute;
+  left: 35%;
+  top: 40%;
+  width: 9.375rem;
+  height: 9.375rem;
+  border-radius: 50%;
+  content: '';
+  background: linear-gradient(#fefefe, #fffbe8);
+}
+
+/* 隐藏搜索框的 "Search" 文字 */
+.search span {
+  display: none;
+}
+
+/* 去除菜单项的下划线 */
+.menus_item a {
+  text-decoration: none !important;
+}
+
+/* 一个图标的内边距 */
+.icon-V {
+  padding: 5px;
+}

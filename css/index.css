@@ -538,8 +538,8 @@ canvas:not(#ribbon-canvas),
   --preloader-bg: #37474f;
   --preloader-color: #fff;
   --tab-border-color: #f0f0f0;
-  --tab-botton-bg: #f0f0f0;
-  --tab-botton-color: #1f2d3d;
+  --tab-button-bg: #f0f0f0;
+  --tab-button-color: #1f2d3d;
   --tab-button-hover-bg: #dcdcdc;
   --tab-button-active-bg: #fff;
   --card-bg: #fff;
@@ -1508,6 +1508,7 @@ figure.highlight pre .javascript .function {
 }
 #recent-posts .recent-post-item >.recent-post-info > .content {
   -webkit-line-clamp: 2;
+  word-break: break-word;
 }
 #article-container .shuoshuo-item {
   margin-bottom: 20px;
@@ -2096,26 +2097,78 @@ figure.highlight pre .javascript .function {
   background-position: bottom;
   background-size: cover;
 }
-#footer-wrap {
+#footer > * {
   position: relative;
-  padding: 40px 20px;
-  color: var(--light-grey);
-  text-align: center;
-}
-#footer-wrap a {
   color: var(--light-grey);
 }
-#footer-wrap a:hover {
-  text-decoration: underline;
+#footer a {
+  color: var(--light-grey);
+  transition: all 0.3s ease-in-out;
 }
-#footer-wrap .footer-separator {
+#footer a:hover {
+  color: #49b1f5;
+}
+#footer .footer-separator {
   margin: 0 4px;
 }
-#footer-wrap .icp-icon {
+#footer .icp-icon {
   padding: 0 4px;
   max-height: 1.4em;
   width: auto;
   vertical-align: text-bottom;
+}
+#footer .footer-flex {
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-orient: horizontal;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  flex-wrap: wrap;
+  -o-box-pack: justify;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 40px 60px;
+  max-width: 1200px;
+  width: 100%;
+  text-align: left;
+  gap: 13px;
+}
+@media screen and (max-width: 768px) {
+  #footer .footer-flex {
+    padding: 30px;
+    gap: 10px;
+  }
+}
+#footer .footer-flex .footer-flex-items {
+  flex-shrink: 0;
+  min-width: 100px;
+  text-align: left;
+  white-space: nowrap;
+}
+#footer .footer-flex .footer-flex-title {
+  margin-bottom: 5px;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 1.4em;
+}
+#footer .footer-flex .footer-flex-item {
+  margin: 10px 0;
+  white-space: nowrap;
+}
+#footer .footer-flex a {
+  display: block;
+  white-space: nowrap;
+}
+#footer .footer-other {
+  padding: 40px 20px;
+  width: 100%;
+  text-align: center;
+}
+#footer .footer-other .framework-info {
+  display: block;
 }
 #page-header {
   position: relative;
@@ -2554,6 +2607,36 @@ figure.highlight pre .javascript .function {
 }
 #nav .site-page:not(.child):hover:after {
   width: 100%;
+}
+#nav .nav-page-title {
+  position: relative;
+  overflow: hidden;
+}
+#nav .nav-page-title > :first-child,
+#nav .nav-page-title > :last-child {
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+#nav .nav-page-title > :last-child {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  transform: translateY(-50%) translateY(-10px);
+}
+#nav .nav-page-title:hover > :last-child {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  transform: translateY(-50%) translateY(0);
+}
+#nav .nav-page-title:hover > :first-child {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  transform: translateY(10px);
 }
 #pagination .pagination {
   margin-top: 20px;
@@ -4032,7 +4115,7 @@ blockquote.pullquote.right {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-  background: var(--tab-botton-bg);
+  background: var(--tab-button-bg);
 }
 .container .tabs > .nav-tabs > .tab {
   -o-box-flex: 1;
@@ -4041,8 +4124,8 @@ blockquote.pullquote.right {
   flex-grow: 1;
   padding: 8px 18px;
   border-top: 2px solid var(--tab-border-color);
-  background: var(--tab-botton-bg);
-  color: var(--tab-botton-color);
+  background: var(--tab-button-bg);
+  color: var(--tab-button-color);
   line-height: 2;
   transition: all 0.4s;
 }
@@ -4187,8 +4270,8 @@ blockquote.pullquote.right {
   --preloader-bg: #0d0d0d;
   --preloader-color: rgba(255,255,255,0.7);
   --tab-border-color: #2c2c2c;
-  --tab-botton-bg: #2c2c2c;
-  --tab-botton-color: rgba(255,255,255,0.7);
+  --tab-button-bg: #2c2c2c;
+  --tab-button-color: rgba(255,255,255,0.7);
   --tab-button-hover-bg: #383838;
   --tab-button-active-bg: #121212;
   --card-bg: #121212;

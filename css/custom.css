@@ -285,3 +285,18 @@ h6::before {
   background-color: transparent !important;
 }
 
+/* --- 确保顶部图能显示出来 --- */
+#page-header.not-home-page {
+  background-image: url(/img/IMG_8950.JPG) !important;
+}
+
+#web_bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* 白色遮罩，0.7是透明度，可以自己调整 */
+  z-index: -1;
+}

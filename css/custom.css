@@ -326,7 +326,7 @@ h6::before {
   text-align: center;
   color: rgb(87, 162, 215);
   line-height: 34px; /*如果有溢出或者垂直不居中的现象微调一下这个参数*/
-  font-size: 18px; /*根据个人喜好*/
+  font-size: 20px; /*根据个人喜好*/
 }
 #site-name:hover::before {
   opacity: 1;
@@ -334,7 +334,7 @@ h6::before {
 }
 #site-name {
   position: relative;
-  font-size: 24px; /*一定要把字体调大点，否则效果惨不忍睹！*/
+  font-size: 26px; /*一定要把字体调大点，否则效果惨不忍睹！*/
 }
 
 .nav-fixed #nav{
@@ -353,7 +353,7 @@ h6::before {
 }
 
 #page-name::before {
-  font-size: 18px;
+  font-size: 20px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -555,7 +555,7 @@ body::-webkit-scrollbar {
     cursor: pointer;
     font-family: tzy;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     color: #6f42c1;
     display: none;
 }

@@ -3269,7 +3269,7 @@ figure.highlight pre .javascript .function {
   filter: alpha(opacity=0);
   background: linear-gradient(to top, #30cfd0 0, #330867 100%);
 }
-.DarkMode .Cuteen_DarkSky:before {
+[data-theme="dark"] .Cuteen_DarkSky:before {
   opacity: 1;
   -ms-filter: none;
   filter: none;

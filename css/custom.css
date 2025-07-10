@@ -673,8 +673,8 @@ body::-webkit-scrollbar {
 
 #post-content {
   /* 建议使用 rem 或 % 进行缩放，1.1rem 表示放大到原先的1.1倍 */
-  font-size: 1.3rem; 
+  font-size: 1.3rem !important; 
   
   /* 字体放大后，建议同步增加行高以优化阅读体验 */
-  line-height: 1.8; 
+  line-height: 1.8 !important; 
 }

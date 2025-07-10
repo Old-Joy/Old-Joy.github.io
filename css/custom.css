@@ -81,7 +81,7 @@
 
     --font-family-global: 'msz', sans-serif; /* 定义全局字体 */
     --font-size-global: 18px; /* 在这里统一控制全局字体大小！*/
-    -line-height-global: 1.7; /* 在这里统一控制全局行高 */
+    -line-height-global: 2.0; /* 在这里统一控制全局行高 */
   }
   
   /* 首页文章卡片 */

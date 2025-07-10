@@ -210,9 +210,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -221,9 +221,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -243,11 +243,11 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title></title>
+      <link href="/css/readPercent.css"/>
+      <url>/css/readPercent.css</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
       
     </entry>
     
@@ -266,10 +266,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/fps.js"/>
-      <url>/js/fps.js</url>
+      <link href="/js/nav.js"/>
+      <url>/js/nav.js</url>
       
-        <content type="html"><![CDATA[if (window.localStorage.getItem("fpson") == undefined || window.localStorage.getItem("fpson") == "1") {    var rAF = function () {        return (            window.requestAnimationFrame ||            window.webkitRequestAnimationFrame ||            function (callback) {                window.setTimeout(callback, 1000 / 60);            }        );    }();    var frame = 0;    var allFrameCount = 0;    var lastTime = Date.now();    var lastFameTime = Date.now();    var loop = function () {        var now = Date.now();        var fs = (now - lastFameTime);        var fps = Math.round(1000 / fs);        lastFameTime = now;        // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS        allFrameCount++;        frame++;        if (now > 1000 + lastTime) {            var fps = Math.round((frame * 1000) / (now - lastTime));            if (fps <= 5) {                var kd = `<span style="color:#bd0000">卡成ppt😰</span>`            } else if (fps <= 15) {                var kd = `<span style="color:red">电竞级帧率😖</span>`            } else if (fps <= 25) {                var kd = `<span style="color:orange">有点难受😨</span>`            } else if (fps < 35) {                var kd = `<span style="color:#9338e6">不太流畅🙄</span>`            } else if (fps <= 45) {                var kd = `<span style="color:#08b7e4">还不错哦😁</span>`            } else {                var kd = `<span style="color:#39c5bb">十分流畅🤓</span>`            }            document.getElementById("fps").innerHTML = `FPS:${fps} ${kd}`;            frame = 0;            lastTime = now;        };        rAF(loop);    }    loop();} else {    document.getElementById("fps").style = "display:none!important"}]]></content>
+        <content type="html"><![CDATA[document.addEventListener('pjax:complete', tonav);document.addEventListener('DOMContentLoaded', tonav);//响应pjaxfunction tonav() {    document.getElementById("name-container").setAttribute("style", "display:none");    var position = $(window).scrollTop();    $(window).scroll(function () {        var scroll = $(window).scrollTop();        if (scroll > position) {            document.getElementById("name-container").setAttribute("style", "");            document.getElementsByClassName("menus_items")[1].setAttribute("style", "display:none!important");        } else {            document.getElementsByClassName("menus_items")[1].setAttribute("style", "");            document.getElementById("name-container").setAttribute("style", "display:none");        }        position = scroll;    });    //修复没有弄右键菜单的童鞋无法回顶部的问题    document.getElementById("page-name").innerText = document.title.split(" | Fomalhaut🥝")[0];}function scrollToTop() {    document.getElementsByClassName("menus_items")[1].setAttribute("style", "");    document.getElementById("name-container").setAttribute("style", "display:none");    btf.scrollToDest(0, 500);}]]></content>
       
     </entry>
     
@@ -277,10 +277,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/nav.js"/>
-      <url>/js/nav.js</url>
+      <link href="/js/fps.js"/>
+      <url>/js/fps.js</url>
       
-        <content type="html"><![CDATA[document.addEventListener('pjax:complete', tonav);document.addEventListener('DOMContentLoaded', tonav);//响应pjaxfunction tonav() {    document.getElementById("name-container").setAttribute("style", "display:none");    var position = $(window).scrollTop();    $(window).scroll(function () {        var scroll = $(window).scrollTop();        if (scroll > position) {            document.getElementById("name-container").setAttribute("style", "");            document.getElementsByClassName("menus_items")[1].setAttribute("style", "display:none!important");        } else {            document.getElementsByClassName("menus_items")[1].setAttribute("style", "");            document.getElementById("name-container").setAttribute("style", "display:none");        }        position = scroll;    });    //修复没有弄右键菜单的童鞋无法回顶部的问题    document.getElementById("page-name").innerText = document.title.split(" | Fomalhaut🥝")[0];}function scrollToTop() {    document.getElementsByClassName("menus_items")[1].setAttribute("style", "");    document.getElementById("name-container").setAttribute("style", "display:none");    btf.scrollToDest(0, 500);}]]></content>
+        <content type="html"><![CDATA[if (window.localStorage.getItem("fpson") == undefined || window.localStorage.getItem("fpson") == "1") {    var rAF = function () {        return (            window.requestAnimationFrame ||            window.webkitRequestAnimationFrame ||            function (callback) {                window.setTimeout(callback, 1000 / 60);            }        );    }();    var frame = 0;    var allFrameCount = 0;    var lastTime = Date.now();    var lastFameTime = Date.now();    var loop = function () {        var now = Date.now();        var fs = (now - lastFameTime);        var fps = Math.round(1000 / fs);        lastFameTime = now;        // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS        allFrameCount++;        frame++;        if (now > 1000 + lastTime) {            var fps = Math.round((frame * 1000) / (now - lastTime));            if (fps <= 5) {                var kd = `<span style="color:#bd0000">卡成ppt😰</span>`            } else if (fps <= 15) {                var kd = `<span style="color:red">电竞级帧率😖</span>`            } else if (fps <= 25) {                var kd = `<span style="color:orange">有点难受😨</span>`            } else if (fps < 35) {                var kd = `<span style="color:#9338e6">不太流畅🙄</span>`            } else if (fps <= 45) {                var kd = `<span style="color:#08b7e4">还不错哦😁</span>`            } else {                var kd = `<span style="color:#39c5bb">十分流畅🤓</span>`            }            document.getElementById("fps").innerHTML = `FPS:${fps} ${kd}`;            frame = 0;            lastTime = now;        };        rAF(loop);    }    loop();} else {    document.getElementById("fps").style = "display:none!important"}]]></content>
       
     </entry>
     
@@ -299,6 +299,17 @@
     
     <entry>
       <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '見て見て!!!';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = 'Timotei————';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/js/snow.js"/>
       <url>/js/snow.js</url>
       
@@ -309,11 +320,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener('visibilitychange', function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = '見て見て!!!';    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = 'Timotei————';    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -331,11 +342,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/readPercent.css"/>
-      <url>/css/readPercent.css</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -345,17 +356,6 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       

@@ -80,8 +80,8 @@
     --backdrop-filter: blur(5px) saturate(150%);
 
     --font-family-global: 'msz', sans-serif; /* 定义全局字体 */
-    --font-size-global: 18px; /* 在这里统一控制全局字体大小！*/
-    -line-height-global: 2.0; /* 在这里统一控制全局行高 */
+    --font-size-global: 17px; /* 在这里统一控制全局字体大小！*/
+    --line-height-global: 1.7; /* 在这里统一控制全局行高 */
   }
   
   /* 首页文章卡片 */

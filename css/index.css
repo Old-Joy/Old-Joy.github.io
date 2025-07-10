@@ -3311,12 +3311,27 @@ figure.highlight pre .javascript .function {
 .menus_item a {
   text-decoration: none !important;
 }
+.Cuteen_DarkSky.fade-out {
+  animation: CuteenSkyFadeOut 1s ease forwards;
+}
 @keyframes CuteenPlanetMove {
   0% {
     transform: rotate(0);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes CuteenSkyFadeOut {
+  from {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  to {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
   }
 }
 #vcomment {

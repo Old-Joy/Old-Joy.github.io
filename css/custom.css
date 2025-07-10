@@ -78,6 +78,10 @@
     --trans-dark: rgba(25, 25, 25, 0.88);
     --border-style: 1px solid rgb(169, 169, 169);
     --backdrop-filter: blur(5px) saturate(150%);
+
+    --font-family-global: 'msz', sans-serif; /* 定义全局字体 */
+    --font-size-global: 18px; /* 在这里统一控制全局字体大小！*/
+    -line-height-global: 1.7; /* 在这里统一控制全局行高 */
   }
   
   /* 首页文章卡片 */
@@ -535,7 +539,9 @@ center#name-container {
 
 body {
   /* 别忘了后面的备用字体 */
-  font-family: 'msz', sans-serif !important;
+  font-family: var(--font-family-global); /* 调用字体变量 */
+  font-size: var(--font-size-global);   /* 调用字号变量 */
+  line-height: var(--line-height-global); /* 调用行高变量 */
 }
 
 

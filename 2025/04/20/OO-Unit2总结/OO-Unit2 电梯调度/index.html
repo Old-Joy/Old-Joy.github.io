@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BUAA_OO_Unit2_单元总结 | Old-Joy</title><meta name="author" content="Old Joy"><meta name="copyright" content="Old Joy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="「BUAA OO」第二单元总结hw5写在动手之前在开始本次作业之前，需要明确几个问题： 1.需要哪些线程 首先自然是6个电梯6个线程，然后便是输入线程 2.有哪些共享对象 因为乘客都已经分配给某个电梯了，乘客自然就不能算共享对象，因为乘客只独属于某个电梯（线程）。那么还有什么算共享对象呢，笔者觉得应该是任务列表类。输入线程把读到的请求写到任务列表里面，6个电梯线程对任务列表进行读操作，获取属于各自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUAA_OO_Unit2_单元总结">
+<meta property="og:url" content="http://oldjoy.top/2025/04/20/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/index.html">
+<meta property="og:site_name" content="Old-Joy">
+<meta property="og:description" content="「BUAA OO」第二单元总结hw5写在动手之前在开始本次作业之前，需要明确几个问题： 1.需要哪些线程 首先自然是6个电梯6个线程，然后便是输入线程 2.有哪些共享对象 因为乘客都已经分配给某个电梯了，乘客自然就不能算共享对象，因为乘客只独属于某个电梯（线程）。那么还有什么算共享对象呢，笔者觉得应该是任务列表类。输入线程把读到的请求写到任务列表里面，6个电梯线程对任务列表进行读操作，获取属于各自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://oldjoy.top/img/Nyamu.png">
+<meta property="article:published_time" content="2025-04-20T14:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-09T01:52:11.771Z">
+<meta property="article:author" content="Old Joy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://oldjoy.top/img/Nyamu.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "BUAA_OO_Unit2_单元总结",
+  "url": "http://oldjoy.top/2025/04/20/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/",
+  "image": "http://oldjoy.top/img/Nyamu.png",
+  "datePublished": "2025-04-20T14:00:00.000Z",
+  "dateModified": "2025-07-09T01:52:11.771Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Old Joy",
+      "url": "http://oldjoy.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://oldjoy.top/2025/04/20/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BUAA_OO_Unit2_单元总结',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/sun_moon.css"><link rel="stylesheet" href="/css/readPercent.css"><span id="fps"></span><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><div id="myscoll"></div><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/index.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/Nyamu.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Old-Joy</span></a><a class="nav-page-title" href="/"><span class="site-name">BUAA_OO_Unit2_单元总结</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">BUAA_OO_Unit2_单元总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-20T14:00:00.000Z" title="发表于 2025-04-20 22:00:00">2025-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-09T01:52:11.771Z" title="更新于 2025-07-09 09:52:11">2025-07-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/BUAA-OO-2025/">BUAA_OO_2025</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-09 09:52:11&quot;}" hidden></div><h1 id="「BUAA-OO」第二单元总结"><a href="#「BUAA-OO」第二单元总结" class="headerlink" title="「BUAA OO」第二单元总结"></a>「BUAA OO」第二单元总结</h1><h2 id="hw5"><a href="#hw5" class="headerlink" title="hw5"></a>hw5</h2><h3 id="写在动手之前"><a href="#写在动手之前" class="headerlink" title="写在动手之前"></a>写在动手之前</h3><p>在开始本次作业之前，需要明确几个问题：</p>
+<p><strong>1.需要哪些线程</strong></p>
+<p>首先自然是6个电梯6个线程，然后便是输入线程</p>
+<p><strong>2.有哪些共享对象</strong></p>
+<p>因为乘客都已经分配给某个电梯了，乘客自然就不能算共享对象，因为乘客只独属于某个电梯（线程）。那么还有什么算共享对象呢，笔者觉得应该是任务列表类。输入线程把读到的请求写到任务列表里面，6个电梯线程对任务列表进行读操作，获取属于各自的请求，完成请求后写回任务列表。</p>
+<p>综上所述，整体框架就已经很明确了，在<code>MainClass</code>类里面，需要把6个电梯线程<code>Elevator</code>依次启动，再把输入线程<code>InputThread</code>启动，每个电梯线程有一个自己的任务列表<code>QuestList</code>，然后<code>InputThread</code>就根据请求的要求（电梯id）来把请求放到人物列表中，由电梯去完成</p>
+<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="/img/OO-Unit2/ClassDiagram_fifth.png" alt="第一次作业类图-电梯系统类图"></p>
+<p>第一次作业类图如图所示，整体按照<em>生产者-消费者模型</em>去搭建的，美中不足的一点是笔者没有写分配器类，这样这个作业的可迭代性就不好</p>
+<h3 id="同步块设计与锁"><a href="#同步块设计与锁" class="headerlink" title="同步块设计与锁"></a>同步块设计与锁</h3><p>第一次作业笔者只是用了<code>synchronized</code>关键字，并没有使用其他的锁。</p>
+<p><img src="/img/OO-Unit2/synchronized.png" alt="第一次作业synchronized方法"></p>
+<p>如图所示，笔者只在<code>QuestTable</code>里面用了<code>synchronized</code>方法，使得<code>InputThread</code>和<code>Elevator</code>线程对其操作是线程安全的。java目前的实现中<code>synchronized</code>的效率也是很高的，所以这种方法很清晰。不过荣老师上课讲过，最好应该是使用<code>synchronzied</code>代码块来上锁，这样更清晰，可拓展性也好，<strong>不要在方法上上锁</strong>。</p>
+<h3 id="电梯调度"><a href="#电梯调度" class="headerlink" title="电梯调度"></a>电梯调度</h3><p>本次作业笔者主要采用了LOOK策略，逻辑如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="comment">/*电梯内有人要出电梯或者电梯外有人要进电梯*/</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Operation.OPEN; <span class="comment">// 电梯开门</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="comment">/*电梯内有人*/</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> Operation.CONTINUE; <span class="comment">// 电梯按当前方向继续运行</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 电梯内没人</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="comment">/*所有电梯的任务表都为空*/</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="comment">/*所有请求都已完成*/</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> Operation.END; <span class="comment">// 电梯终止运行</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> Operation.WAIT; <span class="comment">// 电梯等待</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="comment">/*当前方向上还存在请求*/</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> Operation.CONTINUE; <span class="comment">// 电梯按当前方向继续运行</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> Operation.REVERSE; <span class="comment">// 电梯掉头</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><code>Opreation</code>是一个枚举类，用来规定电梯的各种动作。</p>
+<p>顺带一提，生活中绝大多数的电梯执行的都是LOOK策略。</p>
+<p>此外，笔者还实现了电梯<del>踹人</del>的策略，也就是在同方向上，若是电梯已满，且门外有优先级比电梯内高的请求，两者交换一下。第一次作业没有<code>RECEIVE</code>的要求，该方案实现起来非常简单。</p>
+<h3 id="代码量和类复杂度分析"><a href="#代码量和类复杂度分析" class="headerlink" title="代码量和类复杂度分析"></a>代码量和类复杂度分析</h3><p><img src="/img/OO-Unit2/Code_fifth.png" alt="第一次作业代码量"></p>
+<p>第一次作业的代码量整体比较少，集中在<code>Elevator</code>类和<code>QuestTable</code>类中。</p>
+<p><img src="/img/OO-Unit2/Magnanimity_fifth.png" alt="第一次作业OO度量"></p>
+<p><code>Elevator</code>类，<code>QuestTable</code>类和<code>Scheduler</code>类的复杂度都比较高。其中<code>Elevator.run()</code>中有<code>while</code>循环和大量<code>if</code>条件判断，而<code>Shceduler</code>类中的<code>existQuest</code>方法和<code>nextOperation</code>方法也是如此，所以复杂度比较高。</p>
+<h3 id="值得注意的bug"><a href="#值得注意的bug" class="headerlink" title="值得注意的bug"></a>值得注意的bug</h3><p>笔者在实现电梯的过程中没有什么印象深刻的bug，不过在互测中找到了别人的bug。我们知道，当我们对一个容器进行边遍历边移除的时候，会发生<code>ConcurrentModificationException</code>，因此我们需要使用迭代器来遍历。然而当<strong>两个线程同时对某个容器进行操作</strong>的时候，即使使用了迭代器，依然会有<code>CME</code>错误。因此，对共享类进行严格的线程安全保证是很重要的。</p>
+<h2 id="hw6"><a href="#hw6" class="headerlink" title="hw6"></a>hw6</h2><h3 id="整体架构-1"><a href="#整体架构-1" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="/img/OO-Unit2/ClassDiagram_sixth.png" alt="第六次作业类图"></p>
+<p>类图如上图所示</p>
+<p>这一次的作业整体要复杂一点，首先不再为每个乘客规定电梯了，其次对电梯也增加了临时调度请求，整体的复杂度很高，<del>笔者也几乎写了整个清明节假期</del></p>
+<p>这一次加入了新的线程<code>Manager</code>，用来将每个请求分配给电梯。</p>
+<h3 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h3><p>在浏览往届学长学姐的帖子的时候，偶然发现了这个学长的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_73635758/article/details/137831524?spm=1001.2014.3001.5501">博客</a>，学到了一个经过合理建模后的打分算法，整体体验下来效果很好，不逊于影子电梯。主要逻辑如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回的分数为电梯从当前楼层出发到接到乘客共运行的楼层数</span></span><br><span class="line"><span class="comment">//在QuestScheduler里取分数最低的电梯分配该乘客</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getScore</span><span class="params">(Quest quest)</span> &#123; </span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/*乘客需求方向与电梯运行方向相同*/</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="comment">/*电梯内人数+与电梯运行方向相同的剩余任务数&lt;电梯容量*/</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="comment">/*电梯无需掉头即可接到乘客*/</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="comment">/*电梯当前楼层与乘客出发楼层之差的绝对值*/</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">//需要掉头</span></span><br><span class="line">                <span class="keyword">return</span> <span class="comment">/*电梯运行一圈的楼层数-电梯当前楼层与乘客出发楼层之差的绝对值*/</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//电梯这趟接不到乘客</span></span><br><span class="line">        	<span class="keyword">return</span> <span class="comment">/*电梯接到乘客需要遍历的圈数x电梯运行一圈的楼层数-电梯当前楼层与乘客出发楼层之差的绝对值*/</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">//乘客需求方向与电梯运行方向相反</span></span><br><span class="line">    	<span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>经过笔者的优化，笔者将电梯运行一圈的楼层数做了一个期望计算，最后的结果约为9-10之间，最后选择了9。第六次作业的强侧得分为95.25分，整体结果还算满意。</p>
+<p>除此以外，整体的调度算法没有改变，一个值得注意的点，就是本次作业的<code>RECEIVE</code>要求使得踢人的实现变得略有复杂，再经过长时间的优化而<del>一直出bug</del>之后，笔者<del>有点自暴自弃，干脆</del>放弃了此策略</p>
+<p>另外有一个让人笑话的点，就是笔者没有想到可以在接收到<code>SCHE</code>时就把电梯内部的乘客放出，反而是让乘客全程跟着电梯跑去临时调度的目标楼层，浪费了一些性能分。</p>
+<h3 id="代码量和复杂度分析"><a href="#代码量和复杂度分析" class="headerlink" title="代码量和复杂度分析"></a>代码量和复杂度分析</h3><p><img src="/img/OO-Unit2/Code_sixth.png" alt="第六次作业代码量"></p>
+<p>可以看到本次作业的代码量一下子就上去了，最多的是在<code>Elevator</code>类里面，对于实现<code>RECEIVE</code>和<code>SCHE</code>花费了大量的精力和代码。</p>
+<p><img src="/img/OO-Unit2/Magnanimity_sixth.png" alt="第六次作业复杂度"></p>
+<p>通过复杂度也可以看出，<code>Elevator</code>类确实变得过于复杂，其中主要是打分算法有较多的条件判断等。而执行分配调度的<code>Manager</code>类也是如此。</p>
+<h3 id="值得注意的bug-1"><a href="#值得注意的bug-1" class="headerlink" title="值得注意的bug"></a>值得注意的bug</h3><p>本次主要的bug有一个，在中测结束前通过笔者的评测机发现了。有时候，电梯可能会同时输出一个<code>RECEIVE</code>和一个<code>SCHE-BEGIN</code>。最后检查发现是在执行临时调度的开始阶段，笔者把锁挂在了电梯身上，而不是未完成请求列表，这导致分配线程在此期间还可以房屋内未完成请求列表，并把一个请求分配给该电梯。而对于笔者的实现，输出<code>RECEIVE</code>是交给分配器的，因此会导致同时输出。</p>
+<p>在互测中，笔者发现同房间同学的一个有趣的bug。该同学似乎为了追求性能，尽量在输出<code>SHCE-BEGIN</code>前多跑几层楼。因此，笔者构造了一个跨度较长的<code>SCHE</code>请求，把电梯卡在极限距离，让该电梯的相应<code>SCHE</code>时间超过规定时间了。</p>
+<h2 id="hw7"><a href="#hw7" class="headerlink" title="hw7"></a>hw7</h2><h3 id="如何处理轿厢不碰撞"><a href="#如何处理轿厢不碰撞" class="headerlink" title="如何处理轿厢不碰撞"></a>如何处理轿厢不碰撞</h3><p>经历过前两次作业的<del>折磨</del>之后，这个问题其实很容易想到解决办法。笔者在电梯内部新建一个<code>TargetFloor</code>对象，对于同一个井道的两个电梯，它们共享这一个楼层。笔者令到达换乘层的电梯获取换乘层对象的锁，在离开该层时释放换乘层对象的锁。需要注意的是，到达与离开均以输出为标准</p>
+<h3 id="如何实现双轿厢电梯"><a href="#如何实现双轿厢电梯" class="headerlink" title="如何实现双轿厢电梯"></a>如何实现双轿厢电梯</h3><p>笔者的实现十分的不优雅。</p>
+<p>调度器分别把这个<code>update</code>请求交给A、B两部电梯，两部电梯同时开始改造，分别放出其内部的乘客、修改参数信息（最高到达楼层等），而这个过程中的<code>UPDATE-BEGIN</code>等，均由A电梯来进行输出，不过很快笔者就发现这样的实现是有问题的。</p>
+<p>尽管两部电梯同时接受到了来自调度器的请求，但这不能保证两部电梯可以同时进行<code>UPDATE</code>，或者说<code>UPDATE</code>的进度能保持一样，这就导致了有可能当A电梯已经输出了<code>UPDATE-BEGIN</code>的时候，B电梯还在放出客人；或者当A电梯尚未输出<code>UPDATE-END</code>的时候，B电梯已经完成了改造，开始<code>RECEIVE</code>乘客了。</p>
+<p>笔者最后采用了这样的方法：对于一个update的请求，其内部设置三个方法，分别是<code>UPDATE</code>的准备、开始和结束。每个方法要求两部电梯都执行一次，才会使得电梯同步进入下一阶段。其实更优雅的方法就是把输出也放置到这些方法中，但笔者没有更改。</p>
+<h3 id="整体架构-2"><a href="#整体架构-2" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="/img/OO-Unit2/ClassDiagram_seventh.png" alt="第七次作业类图"></p>
+<p>类图如上所示，架构较上一次作业没有太大变化。</p>
+<h3 id="代码量和复杂度分析-1"><a href="#代码量和复杂度分析-1" class="headerlink" title="代码量和复杂度分析"></a>代码量和复杂度分析</h3><p><img src="/img/OO-Unit2/Code_seventh.png" alt="第七次作业代码量"></p>
+<p>第七次作业代码量突破了1000行，其实整体上还是有东西可以合并的，在代码块中有几处重复或者高度相似的代码段。主要集中在<code>Elevator</code>类里面。</p>
+<p><img src="/img/OO-Unit2/Magnanimity_seventh.png" alt="第七次作业复杂度"></p>
+<p>作业整体的复杂度也很高，集中在电梯、调度器等。为了迎合双轿厢电梯的改造，<code>Scheduler</code>，即电梯行为的指示器，复杂度也变高了。</p>
+<h3 id="值得注意的bug-2"><a href="#值得注意的bug-2" class="headerlink" title="值得注意的bug"></a>值得注意的bug</h3><p>本次作业出现的有趣的bug都在开头部分交代了。在强测和互测中均没有跑出bug。</p>
+<h2 id="同步块和锁"><a href="#同步块和锁" class="headerlink" title="同步块和锁"></a>同步块和锁</h2><p>本次作业中，笔者主要使用的都是<code>synchronized</code>关键字。在第六次作业的实现过程中，笔者初步尝试了使用读写锁，但是在自己评测的过程中出现了很多难以修复的<del>奇妙</del>bug，<del>遂作罢</del>，改回<code>synchronized</code>。另外，对于很多私有变量，我使用了<code>AtomicBoolean</code>以及<code>AtomicInteger</code>，降低了锁的使用频率。java保证了对这些变量的读写都是原子性的。</p>
+<h2 id="bug以及debug方法"><a href="#bug以及debug方法" class="headerlink" title="bug以及debug方法"></a>bug以及debug方法</h2><p>本次电梯单元，笔者是无伤通关，强测互测均没有出现bug。对于debug，笔者有一些自己比较好用的方法：</p>
+<ol>
+<li>调试输出<br> 多线程的bug并不能稳定复现，而且也不能通过打断点的方法去debug，因此我们可以进行调试输出，也就是在一些关键地方输出一些能反映线程参数的信息。比如在线程结束时，让线程输出<code>end</code>等，这样可以观察有哪些线程可能没有正常结束，进而发现程序中的缺陷</li>
+<li>代码走查<br> 代码走查指的是在代码写完之后通读代码全体，检查代码潜在的bug。笔者主要通过这种方法来寻找可能出现的线程不安全问题，也确实用这样的方法成功的查漏补缺了。</li>
+<li>构造评测机<br> 自动化评测对于多线程问题来说，笔者认为是必要的。大量的测试点才有可能测出多线程项目中潜在的问题，人工构造的测试点并不总能很好的”压迫边界“。构造评测机方法，详情可以看笔者的<a target="_blank" rel="noopener" href="http://oo.buaa.edu.cn/assignment/624/discussion/1691">讨论区帖子</a>，抑或是已经同步更新的<a target="_blank" rel="noopener" href="https://www.oldjoy.top/2025/04/08/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/%E6%88%91%E4%BC%9A%E6%9E%84%E5%BB%BA%E5%81%A5%E5%A3%AE%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%B5%E6%A2%AF%E8%AF%84%E6%B5%8B%E6%9C%BA/">博客</a>。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>经历了面向对象和操作系统的<del>双重折磨</del>，笔者算是对多线程有了一点理解。对于多线程编程，同步与互斥，也就是线程安全，是多线程编程最核心的内容之一。</p>
+<p>笔者在测试中没有发现自己的任何有关线程安全的bug，这主要归功于在开始学习多线程编程之前，笔者对线程问题进行了细致系统的学习。尽管如此，笔者也并不认为自己对线程安全已经完全掌握。本次作业并发程度并不高，共享资源并不复杂，尚且没有达到生活中常见的多线程问题（12306），只能说对多线程初窥门径。</p>
+<h2 id="层次化设计"><a href="#层次化设计" class="headerlink" title="层次化设计"></a>层次化设计</h2><p>本次作业的核心架构没有离开多线程架构中经典的<strong>生产者-消费者模型</strong>，而经历了操作系统的学习之后，这样的模型其实还有更多、更复杂、同样很精巧的模型。</p>
+<p>层次化设计要求编程者自顶向下对整个设计任务进行分层分块，并对每层每块分别建类实现。高层的类只关注抽象后的功能调用，而底层的类则负责每种功能的具体实现。这样的做法在降低每层代码的复杂度发同时也会增加程序的代码总量，所以应该合理平衡代码复杂度与代码量。</p>
+<p>本次作业中，我的层次化设计整体还算比较好，每个类负责的功能比较单一，类间逻辑比较清晰。但其实还可以做的更好，有很多可以继续抽象的地方尚可优化。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://oldjoy.top">Old Joy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://oldjoy.top/2025/04/20/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/">http://oldjoy.top/2025/04/20/OO-Unit2%E6%80%BB%E7%BB%93/OO-Unit2%20%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://oldjoy.top" target="_blank">Old-Joy</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/Nyamu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/11/OS-Lab2/BUAA-OS-Lab2%20%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab2_实验报告"><img class="cover" src="/img/Sakiko.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">BUAA_OS_Lab2_实验报告</div></div><div class="info-2"><div class="info-item-1">思考题Thinking 2.1 请根据上述说明，回答问题：在编写的 C 程序中，指针变量中存储的地址被视为虚拟地址，还是物理地址？MIPS 汇编程序中 lw 和 sw 指令使用的地址被视为虚拟地址，还是物理地址？  C 语言中指针变量储存的地址是虚拟地址，汇编代码中 lw 和 sw 指令中使用的地址也是虚拟地址。 Thinking 2.2  从可重用性的角度，阐述用宏来实现链表的好处。 查看实验环境中的 &#x2F;usr&#x2F;include&#x2F;sys&#x2F;queue.h，了解其中单向链表与循环链表的实现，比较它们与本实验中使用的双向链表，分析三者在插入与删除操作上的性能差异。    使用宏来实现链表的好处有以下几个方面：  代码复用：宏可以使链表的定义和操作变得通用，不受特定数据类型的影响。通过宏，可以在不同的数据结构中重用相同的链表实现代码，只需简单地将链表节点中的数据类型进行替换即可。 类型无关性：宏允许链表操作与具体的存储类型无关，这意味着同一个宏定义可以用于创建存储不同类型数据的链表。 性能优势：宏在编译时会被直接替换为相应的代码，没有函数调用的开销...</div></div></div></a><a class="pagination-related" href="/2025/04/25/OS-Lab3/BUAA-OS-Lab3%20%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab3_实验报告"><img class="cover" src="/img/Uika.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">BUAA_OS_Lab3_实验报告</div></div><div class="info-2"><div class="info-item-1">BUAA_OS_Lab3_实验报告思考题Thinking 3.1 请结合 MOS 中的页目录自映射应用解释代码中 e-&gt;env_pgdir[PDX(UVPT)] = PADDR(e-&gt;env_pgdir) | PTE_V 的含义。   e-&gt;env_pgdir 代表当前进程的页目录的基地址。在 MOS 中，每个进程都有自己的页目录，用于存储该进程的页表信息。 PADDR(e-&gt;env_pgdir) 代表这个函数获取页目录的物理地址。PADDR是一个宏，用于将内核虚拟地址转换为物理地址。 PTE_V ：这是一个标志位，表示页表项有效。PADDR(e-&gt;env_pgdir) | PTE_V，表示给页目录的物理基地址加上权限位。 PDX(UVPT)：这是一个宏，用于获取虚拟地址 UVPT 的页目录索引。  所以，这行代码的作用是将当前进程的页目录的物理地址映射到用户虚拟地址空间的UVPT地址处，并设置页表项为有效。这样，进程就可以在自己的地址空间中访问页表和页目录，提高了访问效率。 Thinking 3.2 elf_load_seg 以函数指针的形式，接受...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Old Joy</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Old-Joy"><i></i><span>Follow Me</span><i class="faa-passing animated" style="padding-left:20px;display:inline-block;vertical-align:middle;"><svg class="icon" style="height:28px;width:28px;fill:currentColor;position:relative;top:5px"><use xlink:href="#icon-xiaoqiche"></use></svg></i></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Old-Joy" target="_blank" title="Github"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="mailto:812601371@qq.com" target="_blank" title="Email"><i class="fas fa-envelop" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><strong>Old Joy's Blog</strong></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8CBUAA-OO%E3%80%8D%E7%AC%AC%E4%BA%8C%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">「BUAA OO」第二单元总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hw5"><span class="toc-number">1.1.</span> <span class="toc-text">hw5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%8A%A8%E6%89%8B%E4%B9%8B%E5%89%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">写在动手之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%9D%97%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%94%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">同步块设计与锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6"><span class="toc-number">1.1.4.</span> <span class="toc-text">电梯调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8F%E5%92%8C%E7%B1%BB%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.1.5.</span> <span class="toc-text">代码量和类复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84bug"><span class="toc-number">1.1.6.</span> <span class="toc-text">值得注意的bug</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hw6"><span class="toc-number">1.2.</span> <span class="toc-text">hw6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">调度算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8F%E5%92%8C%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">代码量和复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84bug-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">值得注意的bug</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hw7"><span class="toc-number">1.3.</span> <span class="toc-text">hw7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E8%BD%BF%E5%8E%A2%E4%B8%8D%E7%A2%B0%E6%92%9E"><span class="toc-number">1.3.1.</span> <span class="toc-text">如何处理轿厢不碰撞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%8C%E8%BD%BF%E5%8E%A2%E7%94%B5%E6%A2%AF"><span class="toc-number">1.3.2.</span> <span class="toc-text">如何实现双轿厢电梯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8F%E5%92%8C%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="toc-number">1.3.4.</span> <span class="toc-text">代码量和复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84bug-2"><span class="toc-number">1.3.5.</span> <span class="toc-text">值得注意的bug</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%9D%97%E5%92%8C%E9%94%81"><span class="toc-number">1.4.</span> <span class="toc-text">同步块和锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bug%E4%BB%A5%E5%8F%8Adebug%E6%96%B9%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">bug以及debug方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-number">1.6.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.7.</span> <span class="toc-text">层次化设计</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/30/OS-Lab5/BUAA-OS-Lab5%20%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab5_实验报告"><img src="/img/Sakiko.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OS_Lab5_实验报告"/></a><div class="content"><a class="title" href="/2025/05/30/OS-Lab5/BUAA-OS-Lab5%20%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab5_实验报告">BUAA_OS_Lab5_实验报告</a><time datetime="2025-05-30T14:00:00.000Z" title="发表于 2025-05-30 22:00:00">2025-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/18/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/" title="BUAA_OO_Unit3_单元总结"><img src="/img/Umiri.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OO_Unit3_单元总结"/></a><div class="content"><a class="title" href="/2025/05/18/OO-Unit3%E6%80%BB%E7%BB%93/%E3%80%8CBUAA%20OO%E3%80%8D%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83%E6%80%BB%E7%BB%93/" title="BUAA_OO_Unit3_单元总结">BUAA_OO_Unit3_单元总结</a><time datetime="2025-05-18T14:00:00.000Z" title="发表于 2025-05-18 22:00:00">2025-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/09/OS-Lab4/BUAA_OS_Lab4%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab4_实验报告"><img src="/img/Mutsumi.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUAA_OS_Lab4_实验报告"/></a><div class="content"><a class="title" href="/2025/05/09/OS-Lab4/BUAA_OS_Lab4%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="BUAA_OS_Lab4_实验报告">BUAA_OS_Lab4_实验报告</a><time datetime="2025-05-09T15:53:13.878Z" title="发表于 2025-05-09 23:53:13">2025-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Old Joy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="日间和夜间模式切换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer src="/js/cursor.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script async src="/js/title.js"></script><script async src="/js/nav.js"></script><script src="/js/sun_moon.js" async></script><script defer data-pjax src="/js/readPercent.js"></script><script defer data-pjax src="/js/cat.js"></script><script async src="/js/fps.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="230,230,250" opacity="0.3" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-xiaoqiche" viewBox="0 0 1024 1024"><path d="M898.2 443.4c-12.8-55-40.3-104.2-79.6-143.4-39.2-39.2-88.4-66.8-143.4-79.6C617.5 208.2 566.1 202 512 202s-105.5 6.2-163.2 18.4c-55 12.8-104.2 40.3-143.4 79.6-39.2 39.2-66.8 88.4-79.6 143.4C113.8 501.2 107.9 553 108 608c0 55.4 5.3 106.5 16.8 156.4 3.2 13.2 16.1 22.4 29.5 22.4h68.3c10.4 0 19.6-6.6 22.9-16.5 11.2-33.5 29.3-63.5 53.9-89.2 23.5-24.5 52.3-44.1 85.2-57.3l4.1-1.6c1.1-0.4 2.3-0.8 3.4-1.2 59.9-22.3 129.5-22.3 189.4 0 1.1 0.4 2.3 0.8 3.4 1.2l4.1 1.6c32.9 13.2 61.7 32.8 85.2 57.3 24.5 25.7 42.7 55.7 53.9 89.2 3.3 9.8 12.5 16.5 22.9 16.5h68.3c13.4 0 26.3-9.2 29.5-22.4 11.5-49.9 16.8-101 16.8-156.4 0.1-55-5.8-106.8-18.2-164.6zM418 586c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m224 0c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z"></path></symbol></svg></body></html>

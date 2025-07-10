@@ -522,9 +522,9 @@ center#name-container {
 
 @font-face {
   /* 为载入的字体取名字(随意) */
-  font-family: 'xiaowei';	
+  font-family: 'kuaile';	
   /* 字体文件地址(相对或者绝对路径都可以) */
-  src: url(/font/ZCOOLXiaoWei-Regular.ttf);
+  src: url(/font/ZCOOLKuaiLe-Regular.ttf);
   /* 定义加粗样式(加粗多少) */
   font-weight: normal;
   /* 定义字体样式(斜体/非斜体) */
@@ -534,9 +534,8 @@ center#name-container {
 }
 
 body {
-  /* 这里的 'xiaowei' 和 @font-face 里的名字要完全一样 */
   /* 别忘了后面的备用字体 */
-  font-family: 'xiaowei', sans-serif !important;
+  font-family: 'kuaile', sans-serif !important;
 }
 
 

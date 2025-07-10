@@ -3260,16 +3260,16 @@ figure.highlight pre .javascript .function {
   z-index: 88888888;
 }
 .Cuteen_DarkSky {
-  background: linear-gradient(to top, #f8cd71 0, #5bfde9 80%);
+  background: linear-gradient(#feb8b0, #fef9db);
 }
 .Cuteen_DarkSky:before {
   transition: 2s ease all;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-  background: linear-gradient(to top, #30cfd0 0, #330867 100%);
+  background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);
 }
-[data-theme="dark"] .Cuteen_DarkSky:before {
+.DarkMode .Cuteen_DarkSky:before {
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -3284,26 +3284,15 @@ figure.highlight pre .javascript .function {
   animation: CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1);
   transform-origin: center bottom;
 }
-.Cuteen_DarkPlanet #sun {
+.Cuteen_DarkPlanet:after {
   position: absolute;
-  border-radius: 100%;
-  left: 44%;
-  top: 30%;
-  height: 6rem;
-  width: 6rem;
-  background: #ffee94;
-  box-shadow: 0 0 40px #ffee94;
-}
-.Cuteen_DarkPlanet #moon {
-  position: absolute;
-  border-radius: 100%;
-  left: 44%;
-  top: 30%;
-  position: absolute;
-  border-radius: 100%;
-  height: 6rem;
-  width: 6rem;
-  box-shadow: -1.8em 1.8em 0 0.2em #fff;
+  left: 35%;
+  top: 40%;
+  width: 9.375rem;
+  height: 9.375rem;
+  border-radius: 50%;
+  content: '';
+  background: linear-gradient(#fefefe, #fffbe8);
 }
 .search span {
   display: none;
@@ -3311,8 +3300,8 @@ figure.highlight pre .javascript .function {
 .menus_item a {
   text-decoration: none !important;
 }
-.Cuteen_DarkSky.fade-out {
-  animation: CuteenSkyFadeOut 1s ease forwards;
+.icon-V {
+  padding: 5px;
 }
 @keyframes CuteenPlanetMove {
   0% {
@@ -3320,18 +3309,6 @@ figure.highlight pre .javascript .function {
   }
   to {
     transform: rotate(360deg);
-  }
-}
-@keyframes CuteenSkyFadeOut {
-  from {
-    opacity: 1;
-    -ms-filter: none;
-    filter: none;
-  }
-  to {
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
   }
 }
 #vcomment {

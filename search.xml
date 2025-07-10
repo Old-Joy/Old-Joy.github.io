@@ -243,6 +243,17 @@
     
     
     <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
@@ -276,20 +287,9 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/readPercent.js"/>
-      <url>/js/readPercent.js</url>
-      
-        <content type="html"><![CDATA[// 当窗口滚动时，执行 percent 函数window.onscroll = percent;// 页面百分比函数function percent() {  // --- 计算滚动百分比 ---  let scrollTop = document.documentElement.scrollTop || window.pageYOffset;  let scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - document.documentElement.clientHeight;  let result = Math.round(scrollTop / scrollHeight * 100);  // --- 获取需要操作的元素 (这是优化过的部分) ---  // 直接通过 class 获取箭头元素，更可靠  const arrow = document.querySelector("#go-up .fa-arrow-up");  // 直接通过 ID 获取百分比元素，更可靠  const percentEl = document.querySelector("#percent");  // 如果找不到元素，就直接退出，防止报错  if (!arrow || !percentEl) {    return;  }  // --- 根据百分比更新显示 (这是优化过的部分) ---  if (result >= 95) {    // 滚动到底部，显示箭头，隐藏百分比    arrow.style.display = 'block';    percentEl.style.display = 'none';  } else {    // 未到底部，隐藏箭头，显示百分比    arrow.style.display = 'none';    percentEl.style.display = 'block';    // 在更新数字的同时，加上 '%' 号 (这就是您要的最终修改！)    percentEl.innerText = result + '%';  }}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -310,6 +310,17 @@
     
     <entry>
       <title></title>
+      <link href="/js/readPercent.js"/>
+      <url>/js/readPercent.js</url>
+      
+        <content type="html"><![CDATA[// 当窗口滚动时，执行 percent 函数window.onscroll = percent;// 页面百分比函数function percent() {  // --- 计算滚动百分比 ---  let scrollTop = document.documentElement.scrollTop || window.pageYOffset;  let scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - document.documentElement.clientHeight;  let result = Math.round(scrollTop / scrollHeight * 100);  // --- 获取需要操作的元素 (这是优化过的部分) ---  // 直接通过 class 获取箭头元素，更可靠  const arrow = document.querySelector("#go-up .fa-arrow-up");  // 直接通过 ID 获取百分比元素，更可靠  const percentEl = document.querySelector("#percent");  // 如果找不到元素，就直接退出，防止报错  if (!arrow || !percentEl) {    return;  }  // --- 根据百分比更新显示 (这是优化过的部分) ---  if (result >= 95) {    // 滚动到底部，显示箭头，隐藏百分比    arrow.style.display = 'block';    percentEl.style.display = 'none';  } else {    // 未到底部，隐藏箭头，显示百分比    arrow.style.display = 'none';    percentEl.style.display = 'block';    // 在更新数字的同时，加上 '%' 号 (这就是您要的最终修改！)    percentEl.innerText = result + '%';  }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/js/title.js"/>
       <url>/js/title.js</url>
       
@@ -320,9 +331,9 @@
     
     
     <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -334,17 +345,6 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       

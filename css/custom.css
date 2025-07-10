@@ -532,3 +532,9 @@ center#name-container {
   /* 定义显示样式 */
   font-display: block;
 }
+
+body {
+  /* 这里的 'xiaowei' 和 @font-face 里的名字要完全一样 */
+  /* 别忘了后面的备用字体 */
+  font-family: 'xiaowei', sans-serif !important;
+}

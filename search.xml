@@ -210,9 +210,31 @@
     
     
     <entry>
+      <title></title>
+      <link href="/css/readPercent.css"/>
+      <url>/css/readPercent.css</url>
+      
+        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -232,33 +254,22 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/readPercent.css"/>
-      <url>/css/readPercent.css</url>
-      
-        <content type="html"><![CDATA[/* 返回顶部 */button#go-up #percent {    display: none;    font-weight: bold;    font-size: 15px !important;}button#go-up span {    font-size: 12px!important;    margin-right: -1px;}/* 鼠标滑动到按钮上时显示返回顶部图标 */button#go-up:hover i {    display: block !important;}button#go-up:hover #percent {    display: none !important;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/css/sun_moon.css"/>
       <url>/css/sun_moon.css</url>
       
         <content type="html"><![CDATA[.Cuteen_DarkSky,.Cuteen_DarkSky:before {  content: '';  position: fixed;  left: 0;  right: 0;  top: 0;  bottom: 0;  z-index: 88888888;}.Cuteen_DarkSky {  background: linear-gradient(#feb8b0, #fef9db);}.Cuteen_DarkSky:before {  transition: 2s ease all;  opacity: 0;  background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);}.DarkMode .Cuteen_DarkSky:before {  opacity: 1;}.Cuteen_DarkPlanet {  z-index: 99999999;  position: fixed;  left: -50%;  top: -50%;  width: 200%;  height: 200%;  animation: CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1);  transform-origin: center bottom;}.Cuteen_DarkPlanet:after {  position: absolute;  left: 35%;  top: 40%;  width: 9.375rem;  height: 9.375rem;  border-radius: 50%;  content: '';  background: linear-gradient(#fefefe, #fffbe8);}.search span {  display: none;}.menus_item a {  text-decoration: none !important;}.icon-V {  padding: 5px;}@keyframes CuteenPlanetMove {  0% {    transform: rotate(0);  }  to {    transform: rotate(360deg);  }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -288,17 +299,6 @@
     
     <entry>
       <title></title>
-      <link href="/js/snow.js"/>
-      <url>/js/snow.js</url>
-      
-        <content type="html"><![CDATA[if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {    // 移动端不显示} else {    document.write('<canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none"></canvas>');    window && (() => {        let e = {            flakeCount: 50, // 雪花数目            minDist: 150,   // 最小距离            color: "255, 255, 255", // 雪花颜色            size: 1.5,  // 雪花大小            speed: .5,  // 雪花速度            opacity: .7,    // 雪花透明度            stepsize: .5    // 步距        };        const t = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (e) {            window.setTimeout(e, 1e3 / 60)        }            ;        window.requestAnimationFrame = t;        const i = document.getElementById("snow"),            n = i.getContext("2d"),            o = e.flakeCount;        let a = -100,            d = -100,            s = [];        i.width = window.innerWidth,            i.height = window.innerHeight;        const h = () => {            n.clearRect(0, 0, i.width, i.height);            const r = e.minDist;            for (let t = 0; t < o; t++) {                let o = s[t];                const h = a,                    w = d,                    m = o.x,                    c = o.y,                    p = Math.sqrt((h - m) * (h - m) + (w - c) * (w - c));                if (p < r) {                    const e = (h - m) / p,                        t = (w - c) / p,                        i = r / (p * p) / 2;                    o.velX -= i * e,                        o.velY -= i * t                } else                    o.velX *= .98,                        o.velY < o.speed && o.speed - o.velY > .01 && (o.velY += .01 * (o.speed - o.velY)),                        o.velX += Math.cos(o.step += .05) * o.stepSize;                n.fillStyle = "rgba(" + e.color + ", " + o.opacity + ")",                    o.y += o.velY,                    o.x += o.velX,                    (o.y >= i.height || o.y <= 0) && l(o),                    (o.x >= i.width || o.x <= 0) && l(o),                    n.beginPath(),                    n.arc(o.x, o.y, o.size, 0, 2 * Math.PI),                    n.fill()            }            t(h)        }            , l = e => {                e.x = Math.floor(Math.random() * i.width),                    e.y = 0,                    e.size = 3 * Math.random() + 2,                    e.speed = 1 * Math.random() + .5,                    e.velY = e.speed,                    e.velX = 0,                    e.opacity = .5 * Math.random() + .3            }            ;        document.addEventListener("mousemove", (e => {            a = e.clientX,                d = e.clientY        }        )),            window.addEventListener("resize", (() => {                i.width = window.innerWidth,                    i.height = window.innerHeight            }            )),            (() => {                for (let t = 0; t < o; t++) {                    const t = Math.floor(Math.random() * i.width)                        , n = Math.floor(Math.random() * i.height)                        , o = 3 * Math.random() + e.size                        , a = 1 * Math.random() + e.speed                        , d = .5 * Math.random() + e.opacity;                    s.push({                        speed: a,                        velX: 0,                        velY: a,                        x: t,                        y: n,                        size: o,                        stepSize: Math.random() / 30 * e.stepsize,                        step: 0,                        angle: 180,                        opacity: d                    })                }                h()            }            )()    }    )();}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/js/rendPercent.js"/>
       <url>/js/rendPercent.js</url>
       
@@ -310,43 +310,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/sun_moon.js"/>
-      <url>/js/sun_moon.js</url>
+      <link href="/js/snow.js"/>
+      <url>/js/snow.js</url>
       
-        <content type="html"><![CDATA[function switchNightMode() {  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>'),    setTimeout(function() {      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),        setTimeout(function() {          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';          setTimeout(function() {            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();          }, 1e3);        }, 2e3)    })  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'  if (nowMode === 'light') {    activateDarkMode()    saveToLocal.set('theme', 'dark', 2)    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')  } else {    activateLightMode()    saveToLocal.set('theme', 'light', 2)    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')  }  // handle some cases  typeof utterancesTheme === 'function' && utterancesTheme()  typeof FB === 'object' && window.loadFBComment()  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {    // 移动端不显示} else {    document.write('<canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none"></canvas>');    window && (() => {        let e = {            flakeCount: 50, // 雪花数目            minDist: 150,   // 最小距离            color: "255, 255, 255", // 雪花颜色            size: 1.5,  // 雪花大小            speed: .5,  // 雪花速度            opacity: .7,    // 雪花透明度            stepsize: .5    // 步距        };        const t = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (e) {            window.setTimeout(e, 1e3 / 60)        }            ;        window.requestAnimationFrame = t;        const i = document.getElementById("snow"),            n = i.getContext("2d"),            o = e.flakeCount;        let a = -100,            d = -100,            s = [];        i.width = window.innerWidth,            i.height = window.innerHeight;        const h = () => {            n.clearRect(0, 0, i.width, i.height);            const r = e.minDist;            for (let t = 0; t < o; t++) {                let o = s[t];                const h = a,                    w = d,                    m = o.x,                    c = o.y,                    p = Math.sqrt((h - m) * (h - m) + (w - c) * (w - c));                if (p < r) {                    const e = (h - m) / p,                        t = (w - c) / p,                        i = r / (p * p) / 2;                    o.velX -= i * e,                        o.velY -= i * t                } else                    o.velX *= .98,                        o.velY < o.speed && o.speed - o.velY > .01 && (o.velY += .01 * (o.speed - o.velY)),                        o.velX += Math.cos(o.step += .05) * o.stepSize;                n.fillStyle = "rgba(" + e.color + ", " + o.opacity + ")",                    o.y += o.velY,                    o.x += o.velX,                    (o.y >= i.height || o.y <= 0) && l(o),                    (o.x >= i.width || o.x <= 0) && l(o),                    n.beginPath(),                    n.arc(o.x, o.y, o.size, 0, 2 * Math.PI),                    n.fill()            }            t(h)        }            , l = e => {                e.x = Math.floor(Math.random() * i.width),                    e.y = 0,                    e.size = 3 * Math.random() + 2,                    e.speed = 1 * Math.random() + .5,                    e.velY = e.speed,                    e.velX = 0,                    e.opacity = .5 * Math.random() + .3            }            ;        document.addEventListener("mousemove", (e => {            a = e.clientX,                d = e.clientY        }        )),            window.addEventListener("resize", (() => {                i.width = window.innerWidth,                    i.height = window.innerHeight            }            )),            (() => {                for (let t = 0; t < o; t++) {                    const t = Math.floor(Math.random() * i.width)                        , n = Math.floor(Math.random() * i.height)                        , o = 3 * Math.random() + e.size                        , a = 1 * Math.random() + e.speed                        , d = .5 * Math.random() + e.opacity;                    s.push({                        speed: a,                        velX: 0,                        velY: a,                        x: t,                        y: n,                        size: o,                        stepSize: Math.random() / 30 * e.stepsize,                        step: 0,                        angle: 180,                        opacity: d                    })                }                h()            }            )()    }    )();}]]></content>
       
     </entry>
     
@@ -364,9 +331,42 @@
     
     
     <entry>
+      <title></title>
+      <link href="/js/sun_moon.js"/>
+      <url>/js/sun_moon.js</url>
+      
+        <content type="html"><![CDATA[function switchNightMode() {  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>'),    setTimeout(function() {      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),        setTimeout(function() {          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';          setTimeout(function() {            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();          }, 1e3);        }, 2e3)    })  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'  if (nowMode === 'light') {    activateDarkMode()    saveToLocal.set('theme', 'dark', 2)    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')  } else {    activateLightMode()    saveToLocal.set('theme', 'light', 2)    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')  }  // handle some cases  typeof utterancesTheme === 'function' && utterancesTheme()  typeof FB === 'object' && window.loadFBComment()  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>音乐</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       

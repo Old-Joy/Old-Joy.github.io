@@ -748,3 +748,18 @@ body {
     min-height: 40px;
   }
 }
+
+/* 浅色模式下的颜色 */
+:root {
+  --anzhiyu-card-bg: #9595e9; /* 在这里替换为您想要的颜色值, 例如 #f0f0f2 */
+}
+
+/* 深色模式下的颜色 */
+[data-theme="dark"] {
+  --anzhiyu-card-bg: #5a3c7c; /* 在这里替换为您想要的深色模式下的颜色值, 例如 #1c1c1e */
+}
+
+.loading-img {
+  background: url(https://www.oldjoy.top/img/avatar.JPG) no-repeat center center;
+  background-size: cover;
+}

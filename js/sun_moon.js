@@ -1,57 +1,63 @@
 /**
- * 已修复的昼夜切换功能
+ * 昼夜切换功能 (最终修复版 - 遵循原始逻辑)
  * 修复思路：
- * 1. 统一逻辑：将原有的两套冲突逻辑合并为一套。
- * 2. 主题优先：以 Butterfly 主题的 activateDarkMode/activateLightMode 函数为准，确保网站主题正确切换。
- * 3. 动画同步：在切换主题的同时，手动为 <body> 元素添加或移除 .DarkMode 类，以触发你的自定义CSS动画。
- * 4. 动画流程：保留了先显示动画、再切换主题、最后移除动画元素的完整流程。
+ * 1. 尊重原创：完全保留用户原始代码的“动画层”和“主题层”分离处理的意图。
+ * 2. 修复冲突：将两个并行的操作放入一个有序的执行流程中，根除“竞态条件”这个核心bug。
+ * 3. 修复动画Bug：
+ * - 恢复用户设定的 3 秒淡出时长 (opacity 3s)。
+ * - 修正了原代码中“淡出3秒但1秒后就移除元素”的bug，现在会等待完整的3秒。
+ * 4. 无外部依赖：不再需要修改 custom.css，撤销上个版本的修改。
  */
 function switchNightMode() {
-  // 1. 立刻插入动画元素，让动画开始播放
-  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>');
+  // 1. 创建动画元素 (来自您的原始代码)
+  document.body.insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>');
 
-  // 2. 判断当前的主题状态
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-
-  // 3. 延迟执行核心切换逻辑，让动画有时间渲染
-  setTimeout(function() {
+  // 2. 将所有操作放入一个统一的、有序的执行队列中，以解决冲突
+  setTimeout(() => {
+    // 首先，执行核心的主题切换逻辑 (来自您的原始代码)
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
-      // 当前是深色模式，需要切换到->浅色模式
-      activateLightMode(); // 使用 Butterfly 原生函数
-      btf.saveToLocal.set('theme', 'light', 2); // 使用 Butterfly 原生方法存储状态
-      document.querySelector('body').classList.remove('DarkMode'); // 移除动画触发类
-      document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon');
+      // 当前是深色，切换至浅色
+      activateLightMode();
+      btf.saveToLocal.set('theme', 'light', 2);
     } else {
-      // 当前是浅色模式，需要切换到->深色模式
-      activateDarkMode(); // 使用 Butterfly 原生函数
-      btf.saveToLocal.set('theme', 'dark', 2); // 使用 Butterfly 原生方法存储状态
-      document.querySelector('body').classList.add('DarkMode'); // 添加动画触发类
-      document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun');
-      
-      // 显示提示（从你的旧代码中保留）
+      // 当前是浅色，切换至深色
+      activateDarkMode();
+      btf.saveToLocal.set('theme', 'dark', 2);
       if (typeof GLOBAL_CONFIG.Snackbar !== 'undefined' && GLOBAL_CONFIG.Snackbar.day_to_night) {
         btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night);
       }
     }
 
-    // 4. 更新可能存在的评论区主题（从你的旧代码中保留，是良好实践）
-    if (typeof utterancesTheme === 'function') utterancesTheme();
-    if (typeof FB === 'object') window.loadFBComment();
-    if (window.DISQUS && document.getElementById('disqus_thread').children.length) {
-      setTimeout(() => window.disqusReset(), 200);
+    // 然后，执行独立的动画层逻辑 (来自您的原始代码)
+    // 通过切换 body 上的 .DarkMode 类来控制动画表现
+    if (document.body.classList.contains('DarkMode')) {
+      document.body.classList.remove('DarkMode');
+      document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon');
+    } else {
+      document.body.classList.add('DarkMode');
+      document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun');
     }
 
-    // 5. 在主题切换后，开始准备移除动画效果
-    setTimeout(function() {
-      const darkSky = document.getElementsByClassName('Cuteen_DarkSky')[0];
-      if (darkSky) {
-        darkSky.style.transition = 'opacity 1s';
-        darkSky.style.opacity = '0';
-        setTimeout(function() {
-          darkSky.remove();
-        }, 1000);
-      }
-    }, 2000); // 动画持续2秒后开始淡出
+    // 更新评论区等（来自您的原始代码）
+    if (typeof utterancesTheme === 'function') utterancesTheme();
+    if (window.DISQUS) setTimeout(() => window.disqusReset(), 200);
 
-  }, 100); // 延迟100毫秒执行，确保动画元素已创建
+    // 最后，处理动画清理 (来自您的原始代码，但已修复bug)
+    // 整个星球旋转动画持续2秒
+    setTimeout(() => {
+      const darkSky = document.querySelector('.Cuteen_DarkSky');
+      if (darkSky) {
+        // 【关键】完全按照您的设定，恢复3秒的淡出动画
+        darkSky.style.transition = 'opacity 3s ease';
+        darkSky.style.opacity = '0';
+
+        // 【关键】修复了原代码的bug，现在会等待完整的3秒再移除元素
+        setTimeout(() => {
+          darkSky.remove();
+        }, 3000);
+      }
+    }, 2000); // 2秒后开始执行淡出
+
+  }, 100); // 给予一个微小的延迟，确保动画元素创建完成
 }

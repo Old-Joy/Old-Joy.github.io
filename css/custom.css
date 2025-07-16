@@ -545,9 +545,7 @@ body {
 }
 
 
-body::-webkit-scrollbar {
-    width: 0;
-}
+
 
 .neko {
     width: 64px;

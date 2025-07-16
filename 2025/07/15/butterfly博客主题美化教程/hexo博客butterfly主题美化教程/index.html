@@ -71,7 +71,7 @@
         document.head.appendChild(link)
       }),
       addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
+        if (!true && key.startsWith('pjax')) return
         const globalFn = parent.globalFn || {}
         globalFn[key] = globalFn[key] || {}
         globalFn[key][name || Object.keys(globalFn[key]).length] = fn
@@ -287,4 +287,70 @@ btf.addGlobalFn('pjaxSend', () => {
 POWERMODE.shake = false;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-xiaoqiche" viewBox="0 0 1024 1024"><path d="M898.2 443.4c-12.8-55-40.3-104.2-79.6-143.4-39.2-39.2-88.4-66.8-143.4-79.6C617.5 208.2 566.1 202 512 202s-105.5 6.2-163.2 18.4c-55 12.8-104.2 40.3-143.4 79.6-39.2 39.2-66.8 88.4-79.6 143.4C113.8 501.2 107.9 553 108 608c0 55.4 5.3 106.5 16.8 156.4 3.2 13.2 16.1 22.4 29.5 22.4h68.3c10.4 0 19.6-6.6 22.9-16.5 11.2-33.5 29.3-63.5 53.9-89.2 23.5-24.5 52.3-44.1 85.2-57.3l4.1-1.6c1.1-0.4 2.3-0.8 3.4-1.2 59.9-22.3 129.5-22.3 189.4 0 1.1 0.4 2.3 0.8 3.4 1.2l4.1 1.6c32.9 13.2 61.7 32.8 85.2 57.3 24.5 25.7 42.7 55.7 53.9 89.2 3.3 9.8 12.5 16.5 22.9 16.5h68.3c13.4 0 26.3-9.2 29.5-22.4 11.5-49.9 16.8-101 16.8-156.4 0.1-55-5.8-106.8-18.2-164.6zM418 586c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m224 0c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z"></path></symbol></svg></body></html>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-xiaoqiche" viewBox="0 0 1024 1024"><path d="M898.2 443.4c-12.8-55-40.3-104.2-79.6-143.4-39.2-39.2-88.4-66.8-143.4-79.6C617.5 208.2 566.1 202 512 202s-105.5 6.2-163.2 18.4c-55 12.8-104.2 40.3-143.4 79.6-39.2 39.2-66.8 88.4-79.6 143.4C113.8 501.2 107.9 553 108 608c0 55.4 5.3 106.5 16.8 156.4 3.2 13.2 16.1 22.4 29.5 22.4h68.3c10.4 0 19.6-6.6 22.9-16.5 11.2-33.5 29.3-63.5 53.9-89.2 23.5-24.5 52.3-44.1 85.2-57.3l4.1-1.6c1.1-0.4 2.3-0.8 3.4-1.2 59.9-22.3 129.5-22.3 189.4 0 1.1 0.4 2.3 0.8 3.4 1.2l4.1 1.6c32.9 13.2 61.7 32.8 85.2 57.3 24.5 25.7 42.7 55.7 53.9 89.2 3.3 9.8 12.5 16.5 22.9 16.5h68.3c13.4 0 26.3-9.2 29.5-22.4 11.5-49.9 16.8-101 16.8-156.4 0.1-55-5.8-106.8-18.2-164.6zM418 586c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z m224 0c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z"></path></symbol></svg></body></html>
